@@ -1,6 +1,8 @@
 import { supabase } from "@/integrations/supabase/client";
 
 export const COURSE_PRICE_EGP = 999;
+const HTTPS_PREVIEW_ORIGIN =
+  "https://id-preview--cc3dadaa-d10d-4d7b-b209-717aed080420.lovable.app";
 
 export type StudentRecord = {
   full_name: string | null;
@@ -58,6 +60,10 @@ export async function updateMyStudent(input: {
  * the hosted checkout URL to redirect the customer to.
  */
 export async function createKashierCheckout(): Promise<{ url: string; orderId: string }> {
+  const origin =
+    window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+      ? HTTPS_PREVIEW_ORIGIN
+      : window.location.origin;
   const { data, error } = await supabase.functions.invoke<{
     url?: string;
     checkoutUrl?: string;
@@ -66,7 +72,7 @@ export async function createKashierCheckout(): Promise<{ url: string; orderId: s
     orderId?: string;
     order_id?: string;
   }>("kashier-checkout", {
-    body: { sku: "course_lifetime", origin: window.location.origin },
+    body: { sku: "course_lifetime", origin },
   });
   if (error) throw new Error(error.message);
 

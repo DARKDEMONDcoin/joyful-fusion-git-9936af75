@@ -302,7 +302,7 @@ function TracksList() {
   const [open, setOpen] = useState<string | null>(tracks[0]?.slug ?? null);
 
   return (
-    <section id="tracks" className="border-t border-border bg-secondary/25 py-16 md:py-16 md:py-20">
+    <section id="tracks" className="border-t border-border bg-secondary/25 py-16 md:py-24">
       <div className="mx-auto max-w-[1080px] px-6">
         <Reveal>
           <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -407,7 +407,7 @@ function TracksList() {
 
 function Proof() {
   return (
-    <section id="proof" className="mx-auto max-w-[1080px] px-6 py-16 md:py-16 md:py-20">
+    <section id="proof" className="mx-auto max-w-[1080px] px-6 py-16 md:py-24">
       <Reveal>
         <h2 className="max-w-[640px] font-display text-[clamp(30px,5.4vw,54px)] leading-[1.06] tracking-[-0.02em] text-foreground">
           مش شهادات مفبركة — <span className="text-accent">أرقام سوق تقدر تشوفها بنفسك</span>.

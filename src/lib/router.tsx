@@ -149,7 +149,7 @@ export type HeadConfig = {
 function applyHead(head: HeadConfig) {
   if (typeof document === "undefined") return () => {};
   const created: Element[] = [];
-  const previousTitle = document.title;
+
 
   for (const tag of head.meta ?? []) {
     if (typeof tag["title"] === "string") {

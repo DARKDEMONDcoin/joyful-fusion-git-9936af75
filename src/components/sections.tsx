@@ -162,7 +162,7 @@ export function CourseSection() {
   return (
     <section id="course" className="border-t border-border py-24">
       <div className="mx-auto max-w-6xl px-6 md:px-14">
-        <SectionVisual src={secTracks} alt="لوحة تحكم متجر إلكتروني بمبيعات 2,014,860 جنيه في يوم واحد" />
+        <SectionVisual src={secTracks} alt="لوحة تحكم متجر إلكتروني بتوضح المبيعات ونسبة التحويل" />
         <Head
           title="12 مسار دخل حقيقي — إنت تختار واحد وتنفّذه"
           accent="للنهاية"

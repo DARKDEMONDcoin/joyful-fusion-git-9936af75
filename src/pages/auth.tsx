@@ -184,9 +184,11 @@ function AuthPage() {
     if (provider === "apple" && window.self !== window.top) {
       const standaloneUrl = new URL("/auth", window.location.origin);
       standaloneUrl.searchParams.set("provider", "apple");
-      const opened = window.open(standaloneUrl.toString(), "_blank", "noopener,noreferrer");
+      const opened = window.open(standaloneUrl.toString(), "_blank");
       if (!opened) {
         toast.error("اسمح بفتح نافذة جديدة عشان نكمّل تسجيل الدخول بأبل.");
+      } else {
+        opened.opener = null;
       }
       return;
     }

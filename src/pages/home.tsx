@@ -171,23 +171,16 @@ function Index() {
 /* ============================ الهيرو — واجهة جريدة ============================ */
 
 function Hero() {
-  const today = new Intl.DateTimeFormat("ar-EG", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(new Date());
-
   return (
     <section className="relative w-full bg-background">
       <div className="mx-auto w-full max-w-[1240px] border-x border-border">
         <SiteNav />
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-6 py-2.5 text-[11.5px] tracking-[0.08em] text-muted-foreground md:px-14">
-          <span>{today}</span>
-          <span className="hidden sm:inline">العدد الأول · دليل الدخل بالدولار من مصر</span>
+          <span>العدد الأول · دليل الدخل بالدولار من مصر</span>
           <span dir="ltr">999 EGP · مدى الحياة</span>
         </div>
+
 
         <div className="grid gap-10 px-6 py-14 md:px-14 md:py-20 lg:grid-cols-[1.55fr_1fr] lg:gap-14">
           <div>

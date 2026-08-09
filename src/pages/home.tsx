@@ -413,10 +413,11 @@ function Proof() {
         <h2 className="max-w-[640px] font-display text-[clamp(30px,5.4vw,54px)] leading-[1.06] tracking-[-0.02em] text-foreground">
           مش شهادات مفبركة — <span className="text-accent">أرقام سوق تقدر تشوفها بنفسك</span>.
         </h2>
-        <p className="mt-6 max-w-[620px] text-[15.5px] leading-[1.95] text-muted-foreground">
-          أي حد يقدر يطبع لقطة تحويل ويكتب اسم. إحنا بنعمل العكس: بنوريك السوق نفسه — الأسعار
-          المعلنة على منصات الشغل، وطريقة حساب أرباح المتاجر والاشتراكات — وتقرر إنت بعقلك.
+        <p className="mt-5 max-w-[620px] text-[15.5px] leading-[1.9] text-muted-foreground">
+          أي حد يقدر يطبع لقطة تحويل. إحنا بنوريك السوق نفسه: الأسعار المعلنة وطريقة حساب الأرباح
+          — وتقرر بعقلك.
         </p>
+
       </Reveal>
 
       <Reveal>

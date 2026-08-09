@@ -9,6 +9,8 @@ import { SiteNav } from "@/components/SiteNav";
 import { Counter, Marquee, Reveal } from "@/components/motion";
 import { tracks } from "@/lib/tracks";
 import {
+  AudienceSection,
+  ComparisonSection,
   CurriculumSection,
   faqs,
   FaqSection,
@@ -22,6 +24,7 @@ import {
   StickyCta,
   TrustStrip,
 } from "@/components/sections";
+
 
 
 const title = "اشتغل أونلاين واكسب بالدولار من مصر | 12 مسار دخل";

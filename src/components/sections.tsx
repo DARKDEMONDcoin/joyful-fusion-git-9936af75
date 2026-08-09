@@ -162,7 +162,7 @@ export function CourseSection() {
   return (
     <section id="course" className="border-t border-border py-24">
       <div className="mx-auto max-w-6xl px-6 md:px-14">
-        <SectionVisual src={secTracks} alt="لوحة تحكم متجر إلكتروني بمبيعات 2,014,860 جنيه في يوم واحد" />
+        <SectionVisual src={secTracks} alt="لوحة تحكم متجر إلكتروني بتوضح المبيعات ونسبة التحويل" />
         <Head
           title="12 مسار دخل حقيقي — إنت تختار واحد وتنفّذه"
           accent="للنهاية"
@@ -874,8 +874,9 @@ export function FounderSection() {
     ["7,200 جنيه", "أول راتب لي بعد التخرج — 2018"],
     ["$412", "أول شهر دخل بالدولار — بعد 90 يوم تنفيذ"],
     ["$31,000", "أعلى شهر من خدمات وأتمتة AI — 2025"],
-    ["+4,300", "مصري اتدرّب على نفس الخطة"],
+    ["38 ساعة", "المحتوى العملي اللي طلع من التجربة دي"],
   ];
+
 
   const steps = [
     ["اختار مسار واحد", "على أساس وقتك وفلوسك مش على أساس الترند."],
@@ -903,6 +904,12 @@ export function FounderSection() {
             </div>
           ))}
         </div>
+
+        <p className="-mt-10 mb-14 text-[12.5px] leading-relaxed text-muted-foreground">
+          الأرقام دي تجربة شخصية للمؤسس، مش متوسط نتائج ولا وعد بدخل مماثل.
+        </p>
+
+
 
         <div className="mb-8 max-w-2xl">
           <p className="text-sm font-semibold tracking-[0.08em] text-accent">نظام الدايرة المقفولة</p>
@@ -1188,17 +1195,38 @@ const moneyMath = [
     d: "منتج رقمي أو اشتراك أو أفلييت. تبنيه مرة ويفضل يبيع — وده أصل ليه قيمة تقدر تبيعه بعد كده.",
     tag: "بيتراكم · قابل للبيع",
   },
+  {
+    n: "05",
+    t: "محتوى وبراند شخصي وعمولات",
+    d: "جمهور صغير مستهدف = دخل من رعاية وعمولات (أفلييت) ومنتجاتك إنت. الجمهور نفسه أصل بيكبر مع الوقت ومبيتسرقش منك.",
+    tag: "بيكبر مع الوقت",
+  },
+  {
+    n: "06",
+    t: "بيع عالي القيمة (High-Ticket)",
+    d: "تقفل صفقات لشركات وتاخد نسبة. مفيش منتج ولا رأس مال — مهارة بيع ومكالمة كويسة، وده أعلى سقف دخل بمجهود مباشر.",
+    tag: "عمولة من كل صفقة",
+  },
+];
+
+const ladder = [
+  ["المرحلة 1", "أول دولار", "مهارة واحدة + عرض واضح + تواصل يومي. الهدف إثبات إن السوق بيدفعلك."],
+  ["المرحلة 2", "دخل ثابت", "عملاء متكررين أو عقود شهرية بدل الشغل المتقطّع."],
+  ["المرحلة 3", "أصل بيشتغل من غيرك", "متجر أو منتج رقمي أو نظام مؤتمت — الدخل بينفصل عن ساعاتك."],
+  ["المرحلة 4", "كيان قابل للبيع", "فريق وعمليات وأرقام موثّقة. الشركات الرقمية بتتباع بمضاعفات أرباحها — والسقف هنا مفتوح."],
 ];
 
 export function MoneyMathSection() {
   return (
     <section id="money" className="border-t border-border bg-secondary/25 py-24">
       <div className="mx-auto w-full max-w-[1240px] px-6 md:px-14">
+
         <Head
           title="خلينا نتكلم في الفلوس بصراحة —"
-          accent="محرّكات الدخل"
-          sub="إحنا مش موقع فريلانسرز. دي الأبواب اللي بتدخل منها الدولارات: خدمات، تجارة إلكترونية، ذكاء اصطناعي، وأصول رقمية. أرقام سوق حقيقية بطرق قانونية 100% — مش وعود."
+          accent="محرّكات الدخل الستة"
+          sub="إحنا مش موقع فريلانسرز. دي كل الأبواب اللي بتدخل منها الدولارات: خدمات ومهارات، تجارة إلكترونية، ذكاء اصطناعي وأتمتة، أصول رقمية واشتراكات، محتوى وعمولات، وبيع عالي القيمة. أسعار سوق حقيقية بطرق قانونية 100% — مش وعود."
         />
+
 
 
         <div className="grid border-y border-border md:grid-cols-2">
@@ -1226,6 +1254,32 @@ export function MoneyMathSection() {
             </article>
           ))}
         </div>
+
+        <div className="mt-14">
+          <p className="text-[11px] font-semibold tracking-[0.28em] text-accent">سلّم الأصول</p>
+          <h3 className="mt-4 max-w-[720px] font-display text-[clamp(22px,3vw,34px)] font-bold leading-[1.2] text-foreground">
+            الوظيفة سقفها راتب. اللي هنا سقفه إنك تبني حاجة تتباع.
+          </h3>
+          <div className="mt-8 grid border-y border-border md:grid-cols-4">
+            {ladder.map(([stage, t, d], i) => (
+              <article
+                key={t}
+                className={`flex flex-col gap-3 border-border p-6 ${
+                  i < ladder.length - 1 ? "border-b md:border-b-0 md:border-l" : ""
+                }`}
+              >
+                <span className="text-[12px] tracking-[0.16em] text-muted-foreground">{stage}</span>
+                <h4 className="text-[17px] font-semibold text-foreground">{t}</h4>
+                <p className="text-[14px] leading-[1.9] text-muted-foreground">{d}</p>
+              </article>
+            ))}
+          </div>
+          <p className="mt-4 text-[12.5px] text-muted-foreground">
+            محدش يقدر يوعدك بمرحلة معيّنة ولا بتوقيت. اللي بنقدّمه إنك تعرف السلّم وتمشي عليه بترتيب
+            بدل ما تلف في دايرة.
+          </p>
+        </div>
+
 
         <div className="mt-10 flex flex-col items-start justify-between gap-5 border border-border bg-secondary px-7 py-6 sm:flex-row sm:items-center">
           <p className="max-w-2xl text-[14.5px] leading-[1.9] text-secondary-foreground">

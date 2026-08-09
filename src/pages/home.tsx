@@ -5,9 +5,6 @@ import { useState } from "react";
 import heroPoster from "@/assets/hero-poster.webp";
 import secTracks from "@/assets/sec-tracks.webp";
 import secProof from "@/assets/sec-proof.webp";
-import p1 from "@/assets/p1.webp";
-import p2 from "@/assets/p2.webp";
-import p3 from "@/assets/p3.webp";
 import { SiteNav } from "@/components/SiteNav";
 import { Counter, Marquee, Reveal } from "@/components/motion";
 import { tracks } from "@/lib/tracks";
@@ -27,9 +24,10 @@ import {
 } from "@/components/sections";
 
 
-const title = "اشتغل أونلاين واكسب بالدولار | كورس المصريين العملي";
+const title = "اشتغل أونلاين واكسب بالدولار من مصر | 12 مسار دخل";
 const description =
-  "12 مسار دخل حقيقي بخطة تنفيذ يوم بيوم لحد أول دولار: تجارة إلكترونية، ذكاء اصطناعي، بناء منتجات، وفن البيع — 999 جنيه دفعة واحدة.";
+  "مش كورس فريلانس: 12 مسار دخل أونلاين — تجارة إلكترونية، ذكاء اصطناعي وأتمتة، منتجات رقمية واشتراكات، محتوى وعمولات — بخطة يوم بيوم لحد أول دولار. 999 جنيه.";
+
 
 const SITE = "https://egyptian-empire-quest.lovable.app";
 const ogImage = `${SITE}/og-image.jpg`;
@@ -101,41 +99,37 @@ export const Route = createPageRoute({
 });
 
 const ticker = [
-  "Upwork · +$1,250 · محمود، القاهرة",
-  "Stripe MRR · +$744 · أحمد، أسيوط",
-  "PayPal Retainer · +$2,200 · سارة، الإسكندرية",
-  "Shopify · EGP 2,041,860 / يوم · كريم، المنصورة",
-  "AI Automation · +$3,500 عقد · نورهان، طنطا",
-  "Commissions · +$4,100 · منة، بورسعيد",
+  "خدمات بالدولار · أسعار معروضة علنًا على Upwork و Fiverr",
+  "تجارة إلكترونية · متجر بهامش ربح محسوب قبل أول إعلان",
+  "أتمتة وذكاء اصطناعي · عقود شهرية مع شركات ومكاتب",
+  "منتجات رقمية واشتراكات · تبنيها مرة وتفضل تتباع",
+  "محتوى وبراند شخصي · رعاية وعمولات وأفلييت",
+  "بيع بالعمولة (High-Ticket) · نسبة من كل صفقة بتقفلها",
+  "استلام الفلوس في مصر · بطرق قانونية وموثّقة",
 ];
 
-
-
-
-
-const students = [
+/* أمثلة سوق عامة — مش شهادات ولا وعود دخل */
+const marketCases = [
   {
-    photo: p1,
-    name: "محمود الشريف",
-    meta: "كوبي رايتر · القاهرة",
-    result: "1,800$ / شهر",
-    text: "كنت بـ 4,000 جنيه في الشهر. بعد 5 شهور بقيت بعمل 1,800 دولار من عميلين ثابتين برا.",
+    tag: "خدمات ومهارات",
+    title: "عميل واحد بالدولار",
+    text: "الأسعار المعروضة علنًا للمستقلين العرب على Upwork و Fiverr بتبدأ من عشرات الدولارات للساعة. أول عقد صغير عندك ممكن يعادل راتب شهر هنا — لكنه محتاج عرض واضح و100 محاولة تواصل حقيقية.",
+    foot: "الطريق: مهارة → عرض → عميل → عقد شهري",
   },
   {
-    photo: p2,
-    name: "سارة عبد العال",
-    meta: "مصممة واجهات · الإسكندرية",
-    result: "2,200$ شهري",
-    text: "أول عميل جاني في اليوم 26 بـ 250 دولار. النهاردة معايا عقد شهري مع أجنسي كندية.",
+    tag: "تجارة وأصول رقمية",
+    title: "دخل مش مربوط بساعاتك",
+    text: "المتجر أو المنتج الرقمي أو الاشتراك بيشتغل وإنت نايم، والأهم إنه أصل ليه قيمة تقدر تبيعه بعدين. اللعبة هنا أرقام: تكلفة الطلب، الهامش، ونسبة التحويل — كلها بتتحسب قبل ما تصرف جنيه.",
+    foot: "الطريق: منتج → اختبار → توسّع → أصل",
   },
   {
-    photo: p3,
-    name: "كريم فتحي",
-    meta: "تجارة إلكترونية · المنصورة",
-    result: "6,400$ صافي",
-    text: "المتجر الأول فشل بالكامل. مشيت على طريقة اختبار البرودكت وطلعت 6,400 دولار صافي في شهر.",
+    tag: "ذكاء اصطناعي وأتمتة",
+    title: "الشركات بتدفع عشان توفّر",
+    text: "أي نظام بيوفّر على شركة ساعات موظف كل يوم ليه سعر شهري. ده أسرع سوق بيكبر دلوقتي، وأغلب المصريين لسه مش داخلينه — والدخول محتاج أدوات وفهم للشغل مش شهادة.",
+    foot: "الطريق: أداة → نيتش → عقد شهري → وكالة",
   },
 ];
+
 
 function Index() {
   return (
@@ -213,15 +207,18 @@ function Hero() {
 
             <div className="mt-8 border-t border-foreground pt-6 md:columns-2 md:gap-10">
               <p className="text-[16px] leading-[1.95] text-secondary-foreground">
-                <span className="font-display text-[19px] font-bold text-accent">عميل واحد</span>
-                {" "} بيدفعلك بالدولار ممكن يعادل راتب شهر كامل هنا. مش سحر ولا وعد ثراء — ده فرق
-                عملة وسوق مفتوح، وناس مصريين خدت نصيبها منه وإنت لسه واقف.
+                <span className="font-display text-[19px] font-bold text-accent">فرق العملة</span>
+                {" "} بيشتغل لصالحك لأول مرة: نفس الشغل اللي بيتدفع فيه بالجنيه هنا، بيتدفع فيه
+                بالدولار بره. والسقف مش راتب — السقف إنك تبني نظام دخل وأصل رقمي ليه قيمة تقدر
+                تبيعه بعدين.
               </p>
               <p className="mt-4 text-[16px] leading-[1.95] text-muted-foreground">
-                تختار مسار دخل واحد من 12، وتمشي على خطة يوم بيوم لحد أول دولار يدخل حسابك. بدون رأس
-                مال، ولا شهادة، ولا كلام فاضي. النتيجة على قد شغلك — والترتيب علينا.
+                مش كورس فريلانس. جواه كل طرق الشغل أونلاين: خدمات ومهارات، تجارة إلكترونية، ذكاء
+                اصطناعي وأتمتة، منتجات رقمية واشتراكات، محتوى وعمولات، وبيع عالي القيمة — تختار
+                مسار واحد وتمشي على خطة يوم بيوم لحد أول دولار. النتيجة على قد شغلك.
               </p>
             </div>
+
 
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -256,7 +253,9 @@ function Hero() {
                 className="editorial-img h-[240px] w-full object-cover"
               />
               <figcaption className="border-t border-border px-4 py-2.5 text-[12px] text-muted-foreground">
-                من أرشيف الطلاب — أول عميل بالدولار بعد 26 يوم.
+                شغل أونلاين من مصر — بأدوات وأسواق متاحة لأي حد النهاردة.
+
+
               </figcaption>
             </figure>
 
@@ -314,7 +313,7 @@ function TracksList() {
           <div className="mb-12 overflow-hidden  border border-border">
             <img
               src={secTracks}
-              alt="لوحة تحليلات Shopify بمبيعات يوم واحد 2,041,860 جنيه"
+              alt="لوحة تحليلات متجر إلكتروني بتوضح المبيعات ونسبة التحويل"
               loading="lazy"
               decoding="async"
               width={1600}
@@ -404,22 +403,26 @@ function Proof() {
   return (
     <section id="proof" className="mx-auto max-w-[1080px] px-6 py-24 md:py-32">
       <Reveal>
-        <h2 className="max-w-[600px] font-display text-[clamp(30px,5.4vw,54px)] leading-[1.06] tracking-[-0.02em] text-foreground">
-          ناس زيك بالحرف — <span className="text-accent">بأرقام وتواريخ</span>.
+        <h2 className="max-w-[640px] font-display text-[clamp(30px,5.4vw,54px)] leading-[1.06] tracking-[-0.02em] text-foreground">
+          مش شهادات مفبركة — <span className="text-accent">أرقام سوق تقدر تشوفها بنفسك</span>.
         </h2>
+        <p className="mt-6 max-w-[620px] text-[15.5px] leading-[1.95] text-muted-foreground">
+          أي حد يقدر يطبع لقطة تحويل ويكتب اسم. إحنا بنعمل العكس: بنوريك السوق نفسه — الأسعار
+          المعلنة على منصات الشغل، وطريقة حساب أرباح المتاجر والاشتراكات — وتقرر إنت بعقلك.
+        </p>
       </Reveal>
 
       <Reveal>
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-9 border-y border-border py-9 md:grid-cols-4">
           {[
-            { n: 4300, suffix: "+", l: "طالب مصري" },
-            { n: 1900000, prefix: "$", l: "أرباح موثّقة" },
+            { n: 12, l: "مسار دخل مختلف" },
             { n: 38, suffix: " ساعة", l: "محتوى عملي" },
-            { n: 12, l: "مسار دخل" },
+            { n: 60, suffix: " يوم", l: "خطة يوم بيوم" },
+            { n: 14, suffix: " يوم", l: "ضمان استرداد" },
           ].map((s) => (
             <div key={s.l}>
               <p className="text-[26px] font-semibold tracking-tight text-foreground">
-                <Counter to={s.n} prefix={s.prefix} suffix={s.suffix} />
+                <Counter to={s.n} suffix={s.suffix} />
               </p>
               <p className="mt-2 text-[13px] text-muted-foreground">{s.l}</p>
             </div>
@@ -431,7 +434,7 @@ function Proof() {
         <div className="mt-12 overflow-hidden  border border-border">
           <img
             src={secProof}
-            alt="إشعارات استلام أرباح على الموبايل بالدولار والجنيه"
+            alt="أدوات استلام الأرباح من الخارج للمصريين: Payoneer وWise وتحويل بنكي"
             loading="lazy"
             decoding="async"
             width={1600}
@@ -442,36 +445,28 @@ function Proof() {
       </Reveal>
 
       <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {students.map((s, i) => (
-          <Reveal key={s.name} delay={i * 0.08}>
-            <figure className="flex h-full flex-col">
-              <blockquote className="flex-1 text-[15.5px] leading-relaxed text-secondary-foreground">
-                {s.text}
-              </blockquote>
-              <div className="mt-6 flex items-center gap-3 border-t border-border pt-5">
-                <img
-                  src={s.photo}
-                  alt={s.name}
-                  loading="lazy"
-                  decoding="async"
-                  width={96}
-                  height={96}
-                  className="portrait-img h-10 w-10 shrink-0 rounded-full object-cover"
-                />
-                <div className="min-w-0 flex-1">
-                  <figcaption className="truncate text-[14px] font-semibold text-foreground">
-                    {s.name}
-                  </figcaption>
-                  <p className="truncate text-[12px] text-muted-foreground">{s.meta}</p>
-                </div>
-                <span dir="ltr" className="shrink-0 text-[13px] font-semibold text-accent">
-                  {s.result}
-                </span>
-              </div>
-            </figure>
+        {marketCases.map((c, i) => (
+          <Reveal key={c.tag} delay={i * 0.08}>
+            <article className="flex h-full flex-col border-t border-border pt-6">
+              <span className="text-[11px] font-semibold tracking-[0.24em] text-accent">
+                {c.tag}
+              </span>
+              <h3 className="mb-3 mt-3 text-[19px] font-semibold text-foreground">{c.title}</h3>
+              <p className="flex-1 text-[15px] leading-[1.95] text-muted-foreground">{c.text}</p>
+              <p className="mt-6 border-t border-border pt-4 text-[13px] text-secondary-foreground">
+                {c.foot}
+              </p>
+            </article>
           </Reveal>
         ))}
       </div>
+
+      <p className="mt-10 border border-border bg-secondary px-6 py-5 text-[13.5px] leading-[1.9] text-muted-foreground">
+        <span className="font-semibold text-foreground">للتوضيح:</span> الأرقام فوق أمثلة لأسعار
+        سوق عامة وطرق حساب — مش وعد بدخل ولا ضمان نتيجة. إحنا بنبيع تعليم وخطة تنفيذ، والنتيجة
+        بتتوقف على شغلك ووقتك والسوق اللي تختاره.
+      </p>
     </section>
   );
 }
+

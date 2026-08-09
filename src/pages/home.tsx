@@ -245,7 +245,7 @@ function Hero() {
             </div>
           </div>
 
-          <aside className="border-t border-border pt-8 md:border-r md:border-t-0 md:pr-10 md:pt-0">
+          <aside className="border-t border-border pt-8 lg:border-r lg:border-t-0 lg:pr-10 lg:pt-0">
             <figure className="border border-border">
               <img
                 src={heroPoster}

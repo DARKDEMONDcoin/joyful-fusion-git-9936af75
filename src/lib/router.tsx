@@ -27,11 +27,11 @@ export { Outlet, useParams, useLocation };
 /* ------------------------------------------------------------------ paths */
 
 export type NavTarget = {
-  to?: string;
-  params?: Record<string, string | number>;
-  search?: Record<string, string | number | boolean | undefined>;
-  hash?: string;
-  replace?: boolean;
+  to?: string | undefined;
+  params?: Record<string, string | number> | undefined;
+  search?: Record<string, string | number | boolean | undefined> | undefined;
+  hash?: string | undefined;
+  replace?: boolean | undefined;
 };
 
 export function buildPath({ to = "", params, search, hash }: NavTarget) {
@@ -211,7 +211,7 @@ const LoaderDataContext = createContext<unknown>(undefined);
 
 type PageRouteOptions<TLoaderData> = {
   loader?: (ctx: { params: Record<string, string> }) => TLoaderData;
-  head?: (ctx: { loaderData?: TLoaderData }) => HeadConfig;
+  head?: (ctx: { loaderData?: TLoaderData | undefined }) => HeadConfig;
   component: ComponentType;
   /** Accepted for compatibility; the app is a client-rendered SPA. */
   ssr?: boolean;

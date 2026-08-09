@@ -246,6 +246,10 @@ function AuthPage() {
     void oauth("apple");
   }, [authLoading, clerkReady, clerkSignIn, session]);
 
+  if (authLoading || session) {
+    return <div className="min-h-screen bg-background" aria-busy="true" />;
+  }
+
 
   return (
     <div dir="rtl" className="min-h-screen bg-background font-arabic">

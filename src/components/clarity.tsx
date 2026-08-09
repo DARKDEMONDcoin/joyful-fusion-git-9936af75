@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link } from "@/lib/router";
 
 /* ============================ شريط قسم (Band) ============================ */
 /* كل قسم بقى له لون خلفية وعنوان كبير مختلف عن اللي قبله عشان العين تفرّق */

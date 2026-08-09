@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "@/lib/router";
 import { Check, X } from "lucide-react";
 import { tracks } from "@/lib/tracks";
 import { company } from "@/lib/company";

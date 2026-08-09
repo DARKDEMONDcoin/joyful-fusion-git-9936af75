@@ -1,4 +1,4 @@
-import { useNavigate, useRouter } from "@tanstack/react-router";
+import { useNavigate, useRouter } from "@/lib/router";
 import { ArrowRight } from "lucide-react";
 
 type Props = {

@@ -1,6 +1,6 @@
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@/lib/router";
 import { supabase } from "@/integrations/supabase/client";
 
 const links = ["المحتوى", "النتايج", "الأسعار"];

@@ -148,8 +148,11 @@ function Index() {
       <TracksList />
       <CurriculumSection />
       <Proof />
+      <ComparisonSection />
       <FounderSection />
+      <AudienceSection />
       <GuaranteeSection />
+
       <PricingSection />
       <FaqSection />
       <SiteFooter />

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Check, Copy, Loader2, Lock } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/use-auth";
 import { BackButton } from "@/components/BackButton";
 import { COURSE_PRICE_EGP, getMyStudent, updateMyStudent } from "@/lib/course.functions";
 
@@ -106,7 +106,7 @@ function Dashboard() {
   async function onSignOut() {
     await queryClient.cancelQueries();
     queryClient.clear();
-    await supabase.auth.signOut();
+    await signOut();
     navigate({ to: "/auth", replace: true });
   }
 

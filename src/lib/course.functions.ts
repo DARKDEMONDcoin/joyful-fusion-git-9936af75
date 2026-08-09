@@ -61,6 +61,7 @@ export async function createKashierCheckout(): Promise<{ url: string; orderId: s
   const { data, error } = await supabase.functions.invoke<{
     url?: string;
     checkoutUrl?: string;
+    checkout_url?: string;
     payment_url?: string;
     orderId?: string;
     order_id?: string;
@@ -69,7 +70,7 @@ export async function createKashierCheckout(): Promise<{ url: string; orderId: s
   });
   if (error) throw new Error(error.message);
 
-  const url = data?.url ?? data?.checkoutUrl ?? data?.payment_url;
+  const url = data?.url ?? data?.checkoutUrl ?? data?.checkout_url ?? data?.payment_url;
   if (!url) throw new Error("تعذّر بدء عملية الدفع");
   return { url, orderId: data?.orderId ?? data?.order_id ?? "" };
 }

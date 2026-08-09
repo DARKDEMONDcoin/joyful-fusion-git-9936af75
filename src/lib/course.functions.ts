@@ -73,7 +73,6 @@ export async function createKashierCheckout(): Promise<{ url: string; orderId: s
     order_id?: string;
   }>("kashier-checkout", {
     body: { sku: "course_lifetime", origin },
-    headers: { "x-app-origin": origin },
   });
   if (error) throw new Error(error.message);
 

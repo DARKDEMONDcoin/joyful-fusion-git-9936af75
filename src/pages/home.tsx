@@ -177,9 +177,10 @@ function Hero() {
         <SiteNav />
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-6 py-2.5 text-[11.5px] tracking-[0.08em] text-muted-foreground md:px-14">
-          <span>العدد الأول · دليل الدخل بالدولار من مصر</span>
-          <span dir="ltr">999 EGP · مدى الحياة</span>
+          <span>تشتغل من مصر · وتتقبض بالدولار</span>
+          <span dir="ltr">Kashier · فيزا وميزة وفوري وفودافون كاش</span>
         </div>
+
 
 
         <div className="grid gap-10 px-6 py-14 md:px-14 md:py-20 lg:grid-cols-[1.55fr_1fr] lg:gap-14">

@@ -34,7 +34,8 @@ export function SiteNav() {
   const authTo = signedIn ? "/dashboard" : "/auth";
 
   const navItem =
-    "text-[13px] font-medium tracking-[0.06em] text-foreground/80 transition-colors hover:text-accent";
+    "inline-flex min-h-[40px] items-center text-[13px] font-medium tracking-[0.06em] text-foreground/80 transition-colors hover:text-accent";
+
 
   return (
     <>

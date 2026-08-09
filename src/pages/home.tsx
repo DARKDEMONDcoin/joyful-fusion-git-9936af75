@@ -193,12 +193,13 @@ function Hero() {
             >
               <span className="h-px w-12 bg-accent" aria-hidden="true" />
               <span className="text-[11px] font-semibold tracking-[0.3em] text-accent">
-                افتتاحية العدد
+                القرار اللي بيغيّر دخلك
               </span>
             </motion.div>
 
             <h1 className="font-display text-[clamp(44px,8.5vw,92px)] font-bold leading-[1.06] text-foreground">
-              {["راتبك بالجنيه…", "ومصاريفك بالدولار"].map((line, i) => (
+              {["مهارتك مش ناقصة…", "السوق بس غلط"].map((line, i) => (
+
                 <motion.span
                   key={line}
                   initial={{ opacity: 0, y: 18 }}

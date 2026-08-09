@@ -52,61 +52,15 @@ export const updateMyStudent = createServerFn({ method: "POST" })
 export const createKashierCheckout = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const { kashierEnv, kashierOrderHash } = await import("@/lib/kashier.server");
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { merchantId, apiKey, mode } = kashierEnv();
-
-    const request = getRequest();
-    const origin = request ? new URL(request.url).origin : "";
-    const orderId = `COURSE-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-    const amount = COURSE_PRICE_EGP.toFixed(2);
-    const currency = "EGP";
-
-    const inserted = await supabaseAdmin.from("course_orders").insert({
-      user_id: context.userId,
-      order_id: orderId,
-      amount: COURSE_PRICE_EGP,
-      currency,
-      status: "pending",
+    // Kashier credentials live in Supabase Edge Function secrets, so checkout
+    // creation is delegated there rather than reading them from this runtime.
+    const checkout = await context.supabase.functions.invoke("kashier-webhook", {
+      body: { action: "create-checkout" },
     });
-    if (inserted.error) throw new Error(inserted.error.message);
-
-    // Prefill the Kashier page with what we already know: fewer fields to type
-    // on a phone means fewer drop-offs at the payment step.
-    const student = await context.supabase
-      .from("course_students")
-      .select("full_name, phone")
-      .eq("user_id", context.userId)
-      .maybeSingle();
-    const claims = context.claims as { email?: string } | undefined;
-
-    const hash = kashierOrderHash({ merchantId, apiKey, orderId, amount, currency });
-    const params = new URLSearchParams({
-      merchantId,
-      orderId,
-      amount,
-      currency,
-      hash,
-      mode,
-      merchantRedirect: `${origin}/dashboard?paid=1`,
-      failureRedirect: "true",
-      serverWebhook: `${origin}/api/public/kashier-webhook`,
-      // No allowedMethods filter => every method enabled on the merchant account
-      // shows up: cards (Visa/Mastercard/Meeza), mobile wallets, bank
-      // installments, valU / Aman / Souhoola, and Apple Pay on live.
-      display: "ar",
-      redirectMethod: "get",
-      interactionSource: "Ecommerce",
-      description: "كورس الشغل أونلاين — وصول كامل مدى الحياة",
-      customerReference: context.userId,
-    });
-
-    const name = student.data?.full_name?.trim();
-    if (name) params.set("customerName", name);
-    const phone = student.data?.phone?.trim();
-    if (phone) params.set("customerPhone", phone);
-    if (claims?.email) params.set("customerEmail", claims.email);
-
-    return { url: `https://checkout.kashier.io/?${params.toString()}`, orderId };
+    if (checkout.error) throw new Error(checkout.error.message);
+    const url = typeof checkout.data?.url === "string" ? checkout.data.url : null;
+    const orderId = typeof checkout.data?.orderId === "string" ? checkout.data.orderId : null;
+    if (!url || !orderId) throw new Error("Kashier checkout returned an invalid response");
+    return { url, orderId };
   });
 

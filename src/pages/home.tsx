@@ -194,12 +194,13 @@ function Hero() {
             >
               <span className="h-px w-12 bg-accent" aria-hidden="true" />
               <span className="text-[11px] font-semibold tracking-[0.3em] text-accent">
-                القرار اللي بيغيّر دخلك
+                الفرق مش في المجهود · في السوق
               </span>
             </motion.div>
 
             <h1 className="font-display text-[clamp(44px,8.5vw,92px)] font-bold leading-[1.06] text-foreground">
-              {["مهارتك مش ناقصة…", "السوق بس غلط"].map((line, i) => (
+              {["إنت مش قليل الحظ.", "إنت متسعّر غلط."].map((line, i) => (
+
 
                 <motion.span
                   key={line}

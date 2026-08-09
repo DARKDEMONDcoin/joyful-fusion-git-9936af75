@@ -5487,6 +5487,30 @@ export type Database = {
           },
         ]
       }
+      mining_reminders: {
+        Row: {
+          created_at: string
+          last_sent_at: string
+          profile_id: string
+          sent_count: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          last_sent_at?: string
+          profile_id: string
+          sent_count?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          last_sent_at?: string
+          profile_id?: string
+          sent_count?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       mining_sessions: {
         Row: {
           claimed: boolean

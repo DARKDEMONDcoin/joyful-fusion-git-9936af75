@@ -856,7 +856,7 @@ export function StickyCta() {
             <span className="text-xs font-normal text-muted-foreground/70 line-through">4,500</span>
           </p>
           <p className="truncate text-[11px] text-muted-foreground">
-            ضمان 14 يوم · دفعة واحدة · وصول مدى الحياة
+            دفعة واحدة · وصول مدى الحياة · تحديثات مجانية
           </p>
         </div>
 

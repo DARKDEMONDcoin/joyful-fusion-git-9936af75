@@ -5,7 +5,7 @@ import { getTrack, tracks, type Track } from "@/lib/tracks";
 
 export const Route = createPageRoute({
   loader: ({ params }) => {
-    const track = getTrack(params.slug);
+    const track = getTrack(params["slug"] ?? "");
     if (!track) throw notFound();
     return { track };
   },

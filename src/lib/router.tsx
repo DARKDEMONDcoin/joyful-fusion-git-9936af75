@@ -82,7 +82,7 @@ export function Link({
     .join(" ");
 
   return (
-    <RRLink to={href} replace={replace} className={cls || undefined} {...rest}>
+    <RRLink to={href} replace={replace ?? false} className={cls || undefined} {...rest}>
       {children}
     </RRLink>
   );
@@ -98,7 +98,7 @@ export function useNavigate() {
         if (typeof target === "string") {
           navigate(target);
         } else {
-          navigate(buildPath(target), { replace: target.replace });
+          navigate(buildPath(target), { replace: target.replace ?? false });
         }
         return Promise.resolve();
       },
@@ -213,6 +213,7 @@ type PageRouteOptions<TLoaderData> = {
   loader?: (ctx: { params: Record<string, string> }) => TLoaderData;
   head?: (ctx: { loaderData?: TLoaderData | undefined }) => HeadConfig;
   component: ComponentType;
+  notFoundComponent?: ComponentType | undefined;
   /** Accepted for compatibility; the app is a client-rendered SPA. */
   ssr?: boolean;
 };
@@ -241,7 +242,10 @@ export function createPageRoute<TLoaderData = unknown>(
 
     useHead(options.head?.({ loaderData }));
 
-    if (missing) return <RouteNotFound />;
+    if (missing) {
+      const NotFoundComponent = options.notFoundComponent ?? RouteNotFound;
+      return <NotFoundComponent />;
+    }
 
     const Component = options.component;
     return (

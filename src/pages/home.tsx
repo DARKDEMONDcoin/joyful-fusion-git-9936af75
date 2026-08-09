@@ -144,14 +144,14 @@ function Index() {
 
       <PainSection />
       <MoneyMathSection />
-      <StartingPointSection />
       <TracksList />
       <CurriculumSection />
       <Proof />
       <ComparisonSection />
-      <FounderSection />
       <AudienceSection />
+      <FounderSection />
       <GuaranteeSection />
+
 
       <PricingSection />
       <FaqSection />

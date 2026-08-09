@@ -198,7 +198,7 @@ function Hero() {
               </span>
             </motion.div>
 
-            <h1 className="font-display text-[clamp(44px,8.5vw,92px)] font-bold leading-[1.06] text-foreground">
+            <h1 className="font-display text-[clamp(40px,7.6vw,84px)] font-bold leading-[1.42] text-foreground [text-wrap:balance]">
               {["اتعلّم تشتغل من مصر", "وتتقبض بالدولار."].map((line, i) => (
 
 

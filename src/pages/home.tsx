@@ -401,22 +401,26 @@ function Proof() {
   return (
     <section id="proof" className="mx-auto max-w-[1080px] px-6 py-24 md:py-32">
       <Reveal>
-        <h2 className="max-w-[600px] font-display text-[clamp(30px,5.4vw,54px)] leading-[1.06] tracking-[-0.02em] text-foreground">
-          ناس زيك بالحرف — <span className="text-accent">بأرقام وتواريخ</span>.
+        <h2 className="max-w-[640px] font-display text-[clamp(30px,5.4vw,54px)] leading-[1.06] tracking-[-0.02em] text-foreground">
+          مش شهادات مفبركة — <span className="text-accent">أرقام سوق تقدر تشوفها بنفسك</span>.
         </h2>
+        <p className="mt-6 max-w-[620px] text-[15.5px] leading-[1.95] text-muted-foreground">
+          أي حد يقدر يطبع لقطة تحويل ويكتب اسم. إحنا بنعمل العكس: بنوريك السوق نفسه — الأسعار
+          المعلنة على منصات الشغل، وطريقة حساب أرباح المتاجر والاشتراكات — وتقرر إنت بعقلك.
+        </p>
       </Reveal>
 
       <Reveal>
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-9 border-y border-border py-9 md:grid-cols-4">
           {[
-            { n: 4300, suffix: "+", l: "طالب مصري" },
-            { n: 1900000, prefix: "$", l: "أرباح موثّقة" },
+            { n: 12, l: "مسار دخل مختلف" },
             { n: 38, suffix: " ساعة", l: "محتوى عملي" },
-            { n: 12, l: "مسار دخل" },
+            { n: 60, suffix: " يوم", l: "خطة يوم بيوم" },
+            { n: 14, suffix: " يوم", l: "ضمان استرداد" },
           ].map((s) => (
             <div key={s.l}>
               <p className="text-[26px] font-semibold tracking-tight text-foreground">
-                <Counter to={s.n} prefix={s.prefix} suffix={s.suffix} />
+                <Counter to={s.n} suffix={s.suffix} />
               </p>
               <p className="mt-2 text-[13px] text-muted-foreground">{s.l}</p>
             </div>
@@ -428,7 +432,7 @@ function Proof() {
         <div className="mt-12 overflow-hidden  border border-border">
           <img
             src={secProof}
-            alt="إشعارات استلام أرباح على الموبايل بالدولار والجنيه"
+            alt="أدوات استلام الأرباح من الخارج للمصريين: Payoneer وWise وتحويل بنكي"
             loading="lazy"
             decoding="async"
             width={1600}
@@ -439,36 +443,28 @@ function Proof() {
       </Reveal>
 
       <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {students.map((s, i) => (
-          <Reveal key={s.name} delay={i * 0.08}>
-            <figure className="flex h-full flex-col">
-              <blockquote className="flex-1 text-[15.5px] leading-relaxed text-secondary-foreground">
-                {s.text}
-              </blockquote>
-              <div className="mt-6 flex items-center gap-3 border-t border-border pt-5">
-                <img
-                  src={s.photo}
-                  alt={s.name}
-                  loading="lazy"
-                  decoding="async"
-                  width={96}
-                  height={96}
-                  className="portrait-img h-10 w-10 shrink-0 rounded-full object-cover"
-                />
-                <div className="min-w-0 flex-1">
-                  <figcaption className="truncate text-[14px] font-semibold text-foreground">
-                    {s.name}
-                  </figcaption>
-                  <p className="truncate text-[12px] text-muted-foreground">{s.meta}</p>
-                </div>
-                <span dir="ltr" className="shrink-0 text-[13px] font-semibold text-accent">
-                  {s.result}
-                </span>
-              </div>
-            </figure>
+        {marketCases.map((c, i) => (
+          <Reveal key={c.tag} delay={i * 0.08}>
+            <article className="flex h-full flex-col border-t border-border pt-6">
+              <span className="text-[11px] font-semibold tracking-[0.24em] text-accent">
+                {c.tag}
+              </span>
+              <h3 className="mb-3 mt-3 text-[19px] font-semibold text-foreground">{c.title}</h3>
+              <p className="flex-1 text-[15px] leading-[1.95] text-muted-foreground">{c.text}</p>
+              <p className="mt-6 border-t border-border pt-4 text-[13px] text-secondary-foreground">
+                {c.foot}
+              </p>
+            </article>
           </Reveal>
         ))}
       </div>
+
+      <p className="mt-10 border border-border bg-secondary px-6 py-5 text-[13.5px] leading-[1.9] text-muted-foreground">
+        <span className="font-semibold text-foreground">للتوضيح:</span> الأرقام فوق أمثلة لأسعار
+        سوق عامة وطرق حساب — مش وعد بدخل ولا ضمان نتيجة. إحنا بنبيع تعليم وخطة تنفيذ، والنتيجة
+        بتتوقف على شغلك ووقتك والسوق اللي تختاره.
+      </p>
     </section>
   );
 }
+

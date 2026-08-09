@@ -253,7 +253,8 @@ function Hero() {
                 className="editorial-img h-[240px] w-full object-cover"
               />
               <figcaption className="border-t border-border px-4 py-2.5 text-[12px] text-muted-foreground">
-                من أرشيف الطلاب — أول عميل بالدولار بعد 26 يوم.
+                شغل أونلاين من مصر — بأدوات وأسواق متاحة لأي حد النهاردة.
+
               </figcaption>
             </figure>
 

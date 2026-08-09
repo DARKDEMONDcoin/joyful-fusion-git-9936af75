@@ -60,12 +60,16 @@ function AuthPage() {
     google: true,
   });
 
+  const redirectTo =
+    (location.state as { from?: string } | null)?.from ?? "/welcome";
+
   useEffect(() => setReady(true), []);
 
   // اكتشاف المزوّدين المفعّلين فعليًا على Supabase (يظهر زر أبل تلقائيًا بعد تفعيله)
   useEffect(() => {
-    const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-    const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string | undefined;
+    const url = import.meta.env["VITE_SUPABASE_URL"] as string | undefined;
+    const key = import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"] as string | undefined;
+
     if (!url || !key) return;
     let active = true;
     void fetch(`${url}/auth/v1/settings`, { headers: { apikey: key } })

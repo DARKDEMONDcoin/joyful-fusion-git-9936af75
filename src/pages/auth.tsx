@@ -55,11 +55,38 @@ function AuthPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [ready, setReady] = useState(false);
+  const [providers, setProviders] = useState<{ apple: boolean; google: boolean }>({
+    apple: false,
+    google: true,
+  });
 
   const redirectTo =
     (location.state as { from?: string } | null)?.from ?? "/welcome";
 
   useEffect(() => setReady(true), []);
+
+  // اكتشاف المزوّدين المفعّلين فعليًا على Supabase (يظهر زر أبل تلقائيًا بعد تفعيله)
+  useEffect(() => {
+    const url = import.meta.env["VITE_SUPABASE_URL"] as string | undefined;
+    const key = import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"] as string | undefined;
+
+    if (!url || !key) return;
+    let active = true;
+    void fetch(`${url}/auth/v1/settings`, { headers: { apikey: key } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((json) => {
+        if (!active || !json?.external) return;
+        setProviders({
+          apple: Boolean(json.external.apple),
+          google: Boolean(json.external.google),
+        });
+      })
+      .catch(() => undefined);
+    return () => {
+      active = false;
+    };
+  }, []);
+
 
   // Already signed in? never show the login form again (until they sign out).
   useEffect(() => {
@@ -202,9 +229,11 @@ function AuthPage() {
         </div>
 
         <div className="mb-7 grid gap-3">
+          {providers.google && (
           <button
             onClick={() => oauth("google")}
-            className="flex items-center justify-center gap-3 rounded-2xl border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60"
+            disabled={loading}
+            className="flex items-center justify-center gap-3 rounded-2xl border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60 disabled:opacity-50"
           >
             <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
               <path
@@ -223,14 +252,19 @@ function AuthPage() {
             </svg>
             المتابعة بحساب جوجل
           </button>
+          )}
+          {providers.apple && (
           <button
             onClick={() => oauth("apple")}
-            className="flex items-center justify-center gap-3 rounded-2xl border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60"
+            disabled={loading}
+            className="flex items-center justify-center gap-3 rounded-2xl border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60 disabled:opacity-50"
           >
             <Apple size={17} className="fill-current" />
             المتابعة بحساب Apple
           </button>
+          )}
         </div>
+
 
 
         <div className="mb-7 flex items-center gap-3">

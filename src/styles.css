@@ -143,32 +143,35 @@
   }
 }
 
-/* ===== ثيم «Serene» — ليل عميق + زجاج سائل + توهّج أبيض =====
- * خلفية #0a0608 · نص أبيض · أسطح زجاجية شفافة · أكسنت عاجي دافئ
+/* ===== ثيم «Velorah» — كحلي سينمائي + زجاج سائل =====
+ * خلفية hsl(201 100% 13%) · نص أبيض · أسطح زجاجية شفافة
  */
 :root {
   --radius: 18px;
-  --background: oklch(0.13 0.008 20);        /* #0a0608 */
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.17 0.008 20);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.17 0.008 20);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.13 0.008 20);
-  --secondary: oklch(0.24 0.01 25);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.24 0.01 25);
-  --muted-foreground: oklch(0.75 0.01 60);
-  --accent: oklch(0.93 0.03 85);             /* عاجي دافئ */
-  --accent-foreground: oklch(0.13 0.008 20);
+  --background: hsl(201 100% 13%);
+  --foreground: hsl(0 0% 100%);
+  --card: hsl(201 60% 16%);
+  --card-foreground: hsl(0 0% 100%);
+  --popover: hsl(201 60% 16%);
+  --popover-foreground: hsl(0 0% 100%);
+  --primary: hsl(0 0% 100%);
+  --primary-foreground: hsl(0 0% 4%);
+  --secondary: hsl(201 45% 20%);
+  --secondary-foreground: hsl(0 0% 100%);
+  --muted: hsl(201 45% 20%);
+  --muted-foreground: hsl(240 4% 66%);
+  --accent: hsl(0 0% 100%);
+  --accent-foreground: hsl(0 0% 4%);
   --destructive: oklch(0.6 0.19 25);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 14%);
-  --input: oklch(1 0 0 / 20%);
-  --ring: oklch(1 0 0 / 45%);
-  --hero-subtitle: oklch(0.82 0.01 80);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(0 0% 100% / 16%);
+  --input: hsl(0 0% 100% / 20%);
+  --ring: hsl(0 0% 100% / 45%);
+  --hero-subtitle: hsl(240 4% 76%);
+  --font-display-family: "Instrument Serif", serif;
+  --font-body-family: "Inter", sans-serif;
 }
+
 
 @theme {
   --font-sans: "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif;

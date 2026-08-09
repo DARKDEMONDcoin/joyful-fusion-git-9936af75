@@ -1,6 +1,6 @@
 import { createPageRoute, Link, useNavigate } from "@/lib/router";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Apple, Loader2, Lock, Mail } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
@@ -57,6 +57,7 @@ function AuthPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [ready, setReady] = useState(false);
+  const appleAutoStarted = useRef(false);
   const { signIn: clerkSignIn, isLoaded: clerkReady } = useSignIn();
   const [providers, setProviders] = useState<{ apple: boolean; google: boolean }>({
     apple: clerkEnabled,
@@ -177,6 +178,21 @@ function AuthPage() {
 
   async function oauth(provider: "google" | "apple") {
     if (loading) return;
+
+    // Apple blocks its sign-in page inside embedded previews. Open our auth
+    // page in a real browser tab first, then start Clerk there automatically.
+    if (provider === "apple" && window.self !== window.top) {
+      const standaloneUrl = new URL("/auth", window.location.origin);
+      standaloneUrl.searchParams.set("provider", "apple");
+      const opened = window.open(standaloneUrl.toString(), "_blank");
+      if (!opened) {
+        toast.error("اسمح بفتح نافذة جديدة عشان نكمّل تسجيل الدخول بأبل.");
+      } else {
+        opened.opener = null;
+      }
+      return;
+    }
+
     setLoading(true);
     try {
       // أبل مش مفعّل على Supabase Auth → نستخدم Clerk المفعّل كـ Third-Party Auth
@@ -214,6 +230,24 @@ function AuthPage() {
       toast.error(arabicAuthError(err));
     }
   }
+
+  useEffect(() => {
+    const provider = new URLSearchParams(window.location.search).get("provider");
+    if (
+      provider !== "apple" ||
+      window.self !== window.top ||
+      appleAutoStarted.current ||
+      !clerkReady ||
+      !clerkSignIn ||
+      authLoading ||
+      session
+    ) {
+      return;
+    }
+
+    appleAutoStarted.current = true;
+    void oauth("apple");
+  }, [authLoading, clerkReady, clerkSignIn, session]);
 
 
   return (

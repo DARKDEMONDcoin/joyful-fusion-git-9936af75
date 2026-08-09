@@ -313,7 +313,7 @@ function TracksList() {
           <div className="mb-12 overflow-hidden  border border-border">
             <img
               src={secTracks}
-              alt="لوحة تحليلات Shopify بمبيعات يوم واحد 2,041,860 جنيه"
+              alt="لوحة تحليلات متجر إلكتروني بتوضح المبيعات ونسبة التحويل"
               loading="lazy"
               decoding="async"
               width={1600}

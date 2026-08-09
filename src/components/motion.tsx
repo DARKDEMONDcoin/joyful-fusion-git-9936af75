@@ -73,21 +73,32 @@ export function Counter({
 
 /** شريط متحرك أفقي (تيكر) بدون مكتبات */
 export function Marquee({ items }: { items: string[] }) {
-  const row = [...items, ...items];
+  const group = (key: string, hidden?: boolean) => (
+    <div
+      key={key}
+      className="flex shrink-0 items-center gap-10 pl-10"
+      aria-hidden={hidden ? "true" : undefined}
+    >
+      {items.map((t, i) => (
+        <span
+          key={i}
+          dir="rtl"
+          className="flex shrink-0 items-center gap-3 whitespace-nowrap text-[13px] tracking-tight text-muted-foreground"
+        >
+          <span className="h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+          {t}
+        </span>
+      ))}
+    </div>
+  );
+
   return (
-    <div className="marquee-mask relative overflow-hidden border-y border-border py-4">
-      <div className="marquee-track flex w-max items-center gap-10">
-        {row.map((t, i) => (
-          <span
-            key={i}
-            dir="ltr"
-            className="flex shrink-0 items-center gap-3 text-[13px] tracking-tight text-muted-foreground"
-          >
-            <span className="h-1 w-1 rounded-full bg-accent" aria-hidden="true" />
-            {t}
-          </span>
-        ))}
+    <div dir="ltr" className="marquee-mask relative overflow-hidden border-y border-border py-4">
+      <div className="marquee-track flex w-max items-center">
+        {group("a")}
+        {group("b", true)}
       </div>
     </div>
   );
 }
+

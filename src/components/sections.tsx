@@ -90,7 +90,7 @@ export function TrustStrip() {
   const items = [
     ["شركة مسجّلة في مصر", `س.ت ${company.commercialRegister} · ر.ض ${company.taxId}`],
     ["دفع مؤمّن بالكامل", "فيزا · ماستركارد · ميزة · محفظة موبايل"],
-    ["ضمان 14 يوم", "فلوسك ترجع كاملة بدون أسئلة"],
+    ["دعم مباشر", "جروب الطلاب ورد على أسئلتك"],
     ["وصول مدى الحياة", "تحديثات مجانية للأبد"],
   ];
 
@@ -573,11 +573,11 @@ export function PricingSection() {
 
           <div className="mt-7  border border-border bg-secondary px-6 py-5 text-center">
             <p className="text-[15px] font-semibold text-foreground">
-              ضمان 14 يوم — تشوف أول وحدتين وتقرر
+              وصول مدى الحياة — تدفع مرة وتفضل معاك للأبد
             </p>
             <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
-              لو حسّيت إن المحتوى مش هينفع معاك، تكتبلنا في الجروب وترجعلك فلوسك كاملة بدون أسئلة.
-              إحنا شايلين المخاطرة عنك.
+              كل الوحدات والقوالب والتحديثات الجديدة بتتضاف لحسابك من غير أي رسوم إضافية، ومعاك
+              جروب الطلاب والدعم المباشر.
             </p>
           </div>
         </div>
@@ -632,7 +632,7 @@ export const faqs = [
   },
   {
     q: "مضمون إني أكسب؟",
-    a: "لأ — ومحدش يقدر يضمنلك ده بصدق. اللي مضمون هو المحتوى والخطة والدعم، وضمان 14 يوم إن فلوسك ترجع كاملة لو مش شايف القيمة. النتيجة بتعتمد على تنفيذك.",
+    a: "لأ — ومحدش يقدر يضمنلك ده بصدق. اللي مضمون هو المحتوى والخطة والدعم ووصولك مدى الحياة للتحديثات. النتيجة بتعتمد على تنفيذك.",
   },
 ];
 
@@ -856,7 +856,7 @@ export function StickyCta() {
             <span className="text-xs font-normal text-muted-foreground/70 line-through">4,500</span>
           </p>
           <p className="truncate text-[11px] text-muted-foreground">
-            ضمان 14 يوم · دفعة واحدة · وصول مدى الحياة
+            دفعة واحدة · وصول مدى الحياة · تحديثات مجانية
           </p>
         </div>
 
@@ -1289,7 +1289,7 @@ export function MoneyMathSection() {
           <p className="max-w-2xl text-[14.5px] leading-[1.9] text-secondary-foreground">
             <span className="font-semibold text-foreground">إخلاء مسؤولية صريح:</span> دي أمثلة
             لأسعار سوق حقيقية، مش ضمان دخل. النتيجة بتتوقف على مجهودك ووقتك والسوق. اللي بنضمنه حاجة
-            واحدة: الترتيب والمحتوى، ولو مش عاجبك خلال {company.refundDays} يوم فلوسك ترجع كاملة.
+            واحدة: الترتيب والمحتوى والتحديثات مدى الحياة.
           </p>
           <PrimaryButton to="/auth">ابدأ الحسبة من النهارده</PrimaryButton>
         </div>

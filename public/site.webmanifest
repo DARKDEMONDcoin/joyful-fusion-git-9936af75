@@ -7,7 +7,7 @@
   "scope": "/",
   "display": "standalone",
   "background_color": "#0B0A09",
-  "theme_color": "#0B0A09",
+  "theme_color": "#c8a85c",
   "icons": [
     { "src": "/favicon.png", "sizes": "64x64", "type": "image/png" },
     { "src": "/apple-touch-icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }

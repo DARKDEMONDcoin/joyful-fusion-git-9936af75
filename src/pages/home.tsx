@@ -15,7 +15,7 @@ import {
   faqs,
   FaqSection,
   FounderSection,
-  GuaranteeSection,
+  
   MoneyMathSection,
   PainSection,
   PricingSection,
@@ -112,7 +112,7 @@ const ticker = [
   "استلام فلوسك في مصر · طرق قانونية وموثّقة خطوة بخطوة",
   "قوالب وسكربتات جاهزة · تنسخ وتستخدم من أول يوم",
   "تحديثات مدى الحياة · دفعة واحدة بـ 999 جنيه",
-  "ضمان 14 يوم · تسترجع فلوسك من غير أسئلة",
+  "دعم مباشر · جروب الطلاب ورد على أسئلتك",
 ];
 
 
@@ -156,7 +156,7 @@ function Index() {
       <ComparisonSection />
       <AudienceSection />
       <FounderSection />
-      <GuaranteeSection />
+      
 
 
       <PricingSection />
@@ -273,7 +273,7 @@ function Hero() {
                 ["عدد المسارات", "12 مسار"],
                 ["مدة الخطة", "60 يوم"],
                 ["ساعات المحتوى", "38 ساعة"],
-                ["الضمان", "14 يوم استرداد"],
+                ["الوصول", "مدى الحياة"],
               ].map(([k, v]) => (
                 <div key={k} className="flex items-baseline justify-between gap-4 py-3.5">
                   <dt className="text-[13px] text-muted-foreground">{k}</dt>
@@ -428,7 +428,7 @@ function Proof() {
             { n: 12, l: "مسار دخل مختلف" },
             { n: 38, suffix: " ساعة", l: "محتوى عملي" },
             { n: 60, suffix: " يوم", l: "خطة يوم بيوم" },
-            { n: 14, suffix: " يوم", l: "ضمان استرداد" },
+            { n: 120, suffix: "+ قالب", l: "أدوات جاهزة للتنفيذ" },
           ].map((s) => (
             <div key={s.l}>
               <p className="text-[26px] font-semibold tracking-tight text-foreground">

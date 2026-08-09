@@ -5,7 +5,7 @@ import { faqs, SiteFooter } from "@/components/sections";
 const SITE = "https://egyptian-empire-quest.lovable.app";
 const title = "الأسئلة الشائعة | كورس الشغل أونلاين";
 const description =
-  "كل الأسئلة قبل الاشتراك: محتاج رأس مال؟ موبايل بس؟ وقت قليل؟ إزاي أستلم فلوسي في مصر؟ وإيه اللي بيغطيه ضمان الـ 14 يوم.";
+  "كل الأسئلة قبل الاشتراك: محتاج رأس مال؟ موبايل بس؟ وقت قليل؟ إزاي أستلم فلوسي في مصر؟ وإيه اللي جوه الكورس بالظبط.";
 
 export const Route = createPageRoute({
   head: () => ({

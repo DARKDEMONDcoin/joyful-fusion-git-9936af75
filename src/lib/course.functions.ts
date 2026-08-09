@@ -60,7 +60,7 @@ export async function updateMyStudent(input: {
 export async function createKashierCheckout(): Promise<{ url: string; orderId: string }> {
   const { data, error } = await supabase.functions.invoke<{ url: string; orderId: string }>(
     "kashier-checkout",
-    { body: { origin: window.location.origin } },
+    { body: { sku: "course_lifetime", origin: window.location.origin } },
   );
   if (error) throw new Error(error.message);
   if (!data?.url) throw new Error("تعذّر بدء عملية الدفع");

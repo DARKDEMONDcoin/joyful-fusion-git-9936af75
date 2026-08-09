@@ -6,6 +6,7 @@ import heroPoster from "@/assets/hero-poster.webp";
 import secTracks from "@/assets/sec-tracks.webp";
 import secProof from "@/assets/sec-proof.webp";
 import { SiteNav } from "@/components/SiteNav";
+import { CtaSection } from "@/components/CtaSection";
 import { Counter, Marquee, Reveal } from "@/components/motion";
 import { tracks } from "@/lib/tracks";
 import {
@@ -161,6 +162,7 @@ function Index() {
 
       <PricingSection />
       <FaqSection />
+      <CtaSection />
       <SiteFooter />
       <StickyCta />
     </div>

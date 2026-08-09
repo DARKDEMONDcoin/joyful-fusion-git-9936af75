@@ -255,6 +255,7 @@ function Hero() {
               <figcaption className="border-t border-border px-4 py-2.5 text-[12px] text-muted-foreground">
                 شغل أونلاين من مصر — بأدوات وأسواق متاحة لأي حد النهاردة.
 
+
               </figcaption>
             </figure>
 

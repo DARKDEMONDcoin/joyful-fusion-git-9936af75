@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createPageRoute, useNavigate } from "@/lib/router";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -6,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 const title = "جاري تسجيل الدخول | كورس الشغل أونلاين";
 const description = "بنكمّل تسجيل دخولك بحساب جوجل ونحوّلك على لوحة الطالب.";
 
-export const Route = createFileRoute("/oauth-callback")({
+export const Route = createPageRoute({
   ssr: false,
   head: () => ({
     meta: [

@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createPageRoute, useNavigate, Link } from "@/lib/router";
 import { BackButton } from "@/components/BackButton";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -8,7 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 const title = "تغيير الباسورد | كورس الشغل أونلاين";
 const description = "اختار باسورد جديد لحسابك وارجع كمّل من حيث ما وقفت.";
 
-export const Route = createFileRoute("/reset-password")({
+export const Route = createPageRoute({
   ssr: false,
   head: () => ({
     meta: [

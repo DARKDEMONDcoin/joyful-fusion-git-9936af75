@@ -1,14 +1,13 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createPageRoute, Link, useNavigate } from "@/lib/router";
 import { BackButton } from "@/components/BackButton";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useServerFn } from "@tanstack/react-start";
 import { COURSE_PRICE_EGP, getMyStudent } from "@/lib/course.functions";
 
 const title = "أهلاً بيك | كورس الشغل أونلاين";
 const description = "خطوة واحدة فاصلة بينك وبين فتح محتوى كورس الشغل أونلاين والأرباح بالدولار.";
 
-export const Route = createFileRoute("/_authenticated/welcome")({
+export const Route = createPageRoute({
   head: () => ({
     meta: [
       { name: "robots", content: "noindex, nofollow" },
@@ -32,7 +31,7 @@ const POINTS = [
 
 function Welcome() {
   const navigate = useNavigate();
-  const fetchStudent = useServerFn(getMyStudent);
+  const fetchStudent = getMyStudent;
   const { data } = useQuery({ queryKey: ["my-student"], queryFn: () => fetchStudent() });
 
   useEffect(() => {

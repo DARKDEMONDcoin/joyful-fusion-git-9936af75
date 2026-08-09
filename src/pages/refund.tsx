@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createPageRoute, Link } from "@/lib/router";
 import { LegalPage, LegalSection } from "@/components/LegalPage";
 import { company } from "@/lib/company";
 
@@ -6,7 +6,7 @@ const title = "سياسة الاسترداد والإلغاء | ميغسي";
 const description =
   "ضمان 14 يوم: إمتى تسترد فلوسك بالكامل، إزاي تطلب الاسترداد خطوة بخطوة، ومدة تنفيذ التحويل، وحالات الاستثناء.";
 
-export const Route = createFileRoute("/refund")({
+export const Route = createPageRoute({
   head: () => ({
     meta: [
       { title },

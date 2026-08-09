@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createPageRoute, Link } from "@/lib/router";
 import { LegalPage, LegalSection } from "@/components/LegalPage";
 import { company } from "@/lib/company";
 
@@ -6,7 +6,7 @@ const title = "عن شركة ميغسي | الجهة المسؤولة عن ال�
 const description =
   "ميغسي لتطوير المنصات الرقمية والتجارة الإلكترونية — شركة ذات مسؤولية محدودة مقرها القاهرة، سجل تجاري 284691 ورقم ضريبي 774034785.";
 
-export const Route = createFileRoute("/about")({
+export const Route = createPageRoute({
   head: () => ({
     meta: [
       { title },

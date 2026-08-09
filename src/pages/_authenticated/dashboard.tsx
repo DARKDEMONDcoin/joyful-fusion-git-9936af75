@@ -1,7 +1,6 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createPageRoute, Link, useNavigate } from "@/lib/router";
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { Check, Copy, Loader2, Lock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -11,7 +10,7 @@ import { COURSE_PRICE_EGP, getMyStudent, updateMyStudent } from "@/lib/course.fu
 const title = "لوحة الطالب | كورس الشغل أونلاين";
 const description = "بياناتك، كود التسجيل، وحالة الدفع والوصول لمحتوى كورس الشغل أونلاين.";
 
-export const Route = createFileRoute("/_authenticated/dashboard")({
+export const Route = createPageRoute({
   head: () => ({
     meta: [
       { name: "robots", content: "noindex, nofollow" },
@@ -57,8 +56,8 @@ function Field({
 function Dashboard() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const fetchStudent = useServerFn(getMyStudent);
-  const saveStudent = useServerFn(updateMyStudent);
+  const fetchStudent = getMyStudent;
+  const saveStudent = updateMyStudent;
 
   // Returning from Kashier the webhook may land a second or two after the
   // redirect, so poll briefly instead of showing a locked page to a paying user.

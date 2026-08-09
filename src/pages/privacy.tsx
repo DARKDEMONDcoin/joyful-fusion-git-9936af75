@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createPageRoute } from "@/lib/router";
 import { LegalPage, LegalSection } from "@/components/LegalPage";
 import { company } from "@/lib/company";
 
@@ -6,7 +6,7 @@ const title = "سياسة الخصوصية | ميغسي";
 const description =
   "إزاي بنجمع بياناتك ونستخدمها ونحميها: أنواع البيانات، الأساس القانوني، مزوّدي الخدمة، مدة الحفظ، وحقوقك في التعديل والحذف.";
 
-export const Route = createFileRoute("/privacy")({
+export const Route = createPageRoute({
   head: () => ({
     meta: [
       { title },

@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createPageRoute, Link, useNavigate } from "@/lib/router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Apple, Loader2, Lock, Mail } from "lucide-react";
@@ -8,7 +8,7 @@ const title = "تسجيل الدخول | كورس الشغل أونلاين";
 const description =
   "سجّل حسابك ودخول على محتوى كورس الشغل أونلاين وكسب الدولار — تسجيل بالإيميل أو جوجل أو Apple.";
 
-export const Route = createFileRoute("/auth")({
+export const Route = createPageRoute({
   head: () => ({
     meta: [
       { title },

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link } from "@/lib/router";
 import { BackButton } from "@/components/BackButton";
 import { SiteNav } from "@/components/SiteNav";
 import { company, companyFacts } from "@/lib/company";

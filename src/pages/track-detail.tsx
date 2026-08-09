@@ -1,11 +1,11 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createPageRoute, Link, notFound } from "@/lib/router";
 import { BackButton } from "@/components/BackButton";
 import { SiteNav } from "@/components/SiteNav";
 import { getTrack, tracks, type Track } from "@/lib/tracks";
 
-export const Route = createFileRoute("/tracks/$slug")({
+export const Route = createPageRoute({
   loader: ({ params }) => {
-    const track = getTrack(params.slug);
+    const track = getTrack(params["slug"] ?? "");
     if (!track) throw notFound();
     return { track };
   },

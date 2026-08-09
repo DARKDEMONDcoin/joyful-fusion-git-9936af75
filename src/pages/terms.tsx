@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createPageRoute } from "@/lib/router";
 import { LegalPage, LegalSection } from "@/components/LegalPage";
 import { company } from "@/lib/company";
 
@@ -6,7 +6,7 @@ const title = "الشروط والأحكام | ميغسي";
 const description =
   "شروط وأحكام استخدام منصة ميغسي لتطوير المنصات الرقمية والتجارة الإلكترونية: الترخيص، الدفع، حقوق الملكية الفكرية، والقانون الحاكم.";
 
-export const Route = createFileRoute("/terms")({
+export const Route = createPageRoute({
   head: () => ({
     meta: [
       { title },

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createPageRoute, Link } from "@/lib/router";
 import { motion } from "framer-motion";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useState } from "react";
@@ -34,7 +34,7 @@ const description =
 const SITE = "https://egyptian-empire-quest.lovable.app";
 const ogImage = `${SITE}/og-image.jpg`;
 
-export const Route = createFileRoute("/")({
+export const Route = createPageRoute({
   head: () => ({
     meta: [
       { title },

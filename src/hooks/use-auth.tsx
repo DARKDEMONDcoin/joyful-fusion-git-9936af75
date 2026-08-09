@@ -80,10 +80,10 @@ function ClerkBridge() {
 export function AuthProvider({ children }: { children: ReactNode }) {
   const { session, setSession, loading } = useSupabaseSession();
 
-  // Clerk hooks آمنة هنا لأن ClerkProvider يلفّ الشجرة دائمًا (بمفتاح أو بدون).
-  const clerkAuth = clerkEnabled ? useClerkAuth() : null;
-  const clerkUser = clerkEnabled ? useClerkUser() : null;
-  const clerk = clerkEnabled ? useClerk() : null;
+  // ClerkProvider يلفّ الشجرة دائمًا، فالـ hooks تُستدعى بدون شروط.
+  const clerkAuth = useClerkAuth();
+  const clerkUser = useClerkUser();
+  const clerk = useClerk();
 
   const clerkSignedIn = Boolean(clerkAuth?.isSignedIn);
   const clerkLoaded = clerkEnabled ? Boolean(clerkAuth?.isLoaded) : true;

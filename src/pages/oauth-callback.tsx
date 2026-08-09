@@ -2,6 +2,11 @@ import { createPageRoute, useNavigate } from "@/lib/router";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  AuthenticateWithRedirectCallback,
+  useAuth as useClerkAuth,
+} from "@clerk/clerk-react";
+import { clerkEnabled } from "@/lib/clerk-supabase";
 
 const title = "جاري تسجيل الدخول | كورس الشغل أونلاين";
 const description = "بنكمّل تسجيل دخولك بحساب جوجل ونحوّلك على لوحة الطالب.";
@@ -102,7 +107,7 @@ function OAuthCallback() {
       sub.subscription.unsubscribe();
       window.clearTimeout(timeout);
     };
-  }, [navigate]);
+  }, [navigate, isClerkCallback]);
 
 
   return (
@@ -110,6 +115,12 @@ function OAuthCallback() {
       dir="rtl"
       className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background px-6 text-center font-arabic"
     >
+      {isClerkCallback && !clerkSignedIn && (
+        <AuthenticateWithRedirectCallback
+          signInFallbackRedirectUrl="/welcome"
+          signUpFallbackRedirectUrl="/welcome"
+        />
+      )}
       {error ? (
         <>
           <p className="text-sm text-muted-foreground">{error}</p>

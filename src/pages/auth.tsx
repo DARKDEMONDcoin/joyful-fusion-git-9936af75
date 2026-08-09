@@ -187,6 +187,7 @@ function AuthPage() {
           return;
         }
         sessionStorage.setItem("auth:redirect", redirectTo);
+        sessionStorage.setItem("auth:provider", "clerk");
         await clerkSignIn.authenticateWithRedirect({
           strategy: "oauth_apple",
           redirectUrl: window.location.origin + "/oauth-callback",

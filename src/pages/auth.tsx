@@ -229,9 +229,11 @@ function AuthPage() {
         </div>
 
         <div className="mb-7 grid gap-3">
+          {providers.google && (
           <button
             onClick={() => oauth("google")}
-            className="flex items-center justify-center gap-3 rounded-2xl border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60"
+            disabled={loading}
+            className="flex items-center justify-center gap-3 rounded-2xl border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60 disabled:opacity-50"
           >
             <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
               <path
@@ -250,14 +252,19 @@ function AuthPage() {
             </svg>
             المتابعة بحساب جوجل
           </button>
+          )}
+          {providers.apple && (
           <button
             onClick={() => oauth("apple")}
-            className="flex items-center justify-center gap-3 rounded-2xl border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60"
+            disabled={loading}
+            className="flex items-center justify-center gap-3 rounded-2xl border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60 disabled:opacity-50"
           >
             <Apple size={17} className="fill-current" />
             المتابعة بحساب Apple
           </button>
+          )}
         </div>
+
 
 
         <div className="mb-7 flex items-center gap-3">

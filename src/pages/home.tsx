@@ -195,9 +195,8 @@ function Hero() {
         <SiteNav />
 
         <div className="flex flex-1 flex-col items-center justify-center px-6 py-20 text-center md:py-[90px]">
-          <span className="animate-fade-rise mb-6 inline-flex items-center gap-3 text-[11px] font-semibold tracking-[0.3em] text-muted-foreground">
-            12 مسار دخل · مسار واحد يكفيك
-          </span>
+
+
 
           <h1
             className="animate-fade-rise max-w-5xl font-display text-[clamp(38px,7vw,80px)] font-normal leading-[1.25] tracking-[-0.02em] text-foreground [text-wrap:balance]"

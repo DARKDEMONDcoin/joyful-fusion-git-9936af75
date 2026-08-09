@@ -55,7 +55,9 @@ function Field({
 
 function Dashboard() {
   const navigate = useNavigate();
+  const { signOut } = useAuth();
   const queryClient = useQueryClient();
+
   const fetchStudent = getMyStudent;
   const saveStudent = updateMyStudent;
 

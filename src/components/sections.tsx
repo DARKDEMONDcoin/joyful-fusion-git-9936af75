@@ -573,11 +573,11 @@ export function PricingSection() {
 
           <div className="mt-7  border border-border bg-secondary px-6 py-5 text-center">
             <p className="text-[15px] font-semibold text-foreground">
-              ضمان 14 يوم — تشوف أول وحدتين وتقرر
+              وصول مدى الحياة — تدفع مرة وتفضل معاك للأبد
             </p>
             <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
-              لو حسّيت إن المحتوى مش هينفع معاك، تكتبلنا في الجروب وترجعلك فلوسك كاملة بدون أسئلة.
-              إحنا شايلين المخاطرة عنك.
+              كل الوحدات والقوالب والتحديثات الجديدة بتتضاف لحسابك من غير أي رسوم إضافية، ومعاك
+              جروب الطلاب والدعم المباشر.
             </p>
           </div>
         </div>

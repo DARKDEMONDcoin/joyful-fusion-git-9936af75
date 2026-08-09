@@ -177,9 +177,10 @@ function Hero() {
         <SiteNav />
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-6 py-2.5 text-[11.5px] tracking-[0.08em] text-muted-foreground md:px-14">
-          <span>تشتغل من مصر · وتتقبض بالدولار</span>
+          <span>مكانك في مصر… وسعرك في السوق العالمي</span>
           <span dir="ltr">Kashier · فيزا وميزة وفوري وفودافون كاش</span>
         </div>
+
 
 
 
@@ -214,14 +215,15 @@ function Hero() {
 
             <div className="mt-8 border-t border-foreground pt-6 md:columns-2 md:gap-10">
               <p className="text-[16px] leading-[1.9] text-secondary-foreground">
-                <span className="font-display text-[19px] font-bold text-accent">فرق العملة</span>
-                {" "} بيشتغل لصالحك: نفس الشغل اللي بيتدفع فيه بالجنيه هنا، بيتدفع فيه بالدولار بره.
+                <span className="font-display text-[19px] font-bold text-accent">نفس الساعة، سعرين.</span>
+                {" "} شغلك اللي بيتسعّر بالجنيه هنا، ليه سوق بيدفع فيه بالدولار — الفرق مش شطارة، الفرق إنك واقف في السوق الصح.
               </p>
               <p className="mt-4 text-[16px] leading-[1.9] text-muted-foreground">
-                مش كورس فريلانس: 12 مسار دخل — تختار واحد وتمشي على خطة يوم بيوم لحد أول دولار.
+                مش كورس فريلانس. 12 مسار دخل حقيقي — تختار واحد، وتمشي على خطة يوم بيوم لحد أول دولار، وبعدها تبني أصل بيكبر من غيرك.
               </p>
 
             </div>
+
 
 
 
@@ -230,7 +232,7 @@ function Hero() {
                 to="/auth"
                 className="group inline-flex h-[54px] items-center justify-center gap-2 bg-accent px-8 text-[15px] font-semibold text-accent-foreground transition-colors hover:bg-[--color-gold-soft]"
               >
-                ابدأ دلوقتي
+                ابدأ مسارك دلوقتي
                 <ArrowLeft
                   size={17}
                   className="transition-transform duration-300 group-hover:-translate-x-1"
@@ -257,10 +259,9 @@ function Hero() {
                 className="editorial-img h-[240px] w-full object-cover"
               />
               <figcaption className="border-t border-border px-4 py-2.5 text-[12px] text-muted-foreground">
-                شغل أونلاين من مصر — بأدوات وأسواق متاحة لأي حد النهاردة.
-
-
+                نفس اللابتوب اللي قدامك دلوقتي — الفرق في اللي بتفتحه عليه.
               </figcaption>
+
             </figure>
 
             <dl className="mt-8 divide-y divide-border border-y border-border">
@@ -278,9 +279,10 @@ function Hero() {
             </dl>
 
             <p className="mt-6 text-[12.5px] leading-relaxed text-muted-foreground">
-              باقة واحدة · دفعة واحدة · وصول مدى الحياة. الأسعار بتزيد مع كل تحديث، والسعر بيتثبّت
-              لحظة الاشتراك.
+              باقة واحدة · دفعة واحدة · وصول مدى الحياة. السعر بيتثبّت لحظة اشتراكك — أي تحديث جاي
+              بيوصلك من غير ما تدفع جنيه زيادة.
             </p>
+
           </aside>
         </div>
 

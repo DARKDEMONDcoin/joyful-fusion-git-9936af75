@@ -905,6 +905,12 @@ export function FounderSection() {
           ))}
         </div>
 
+        <p className="-mt-10 mb-14 text-[12.5px] leading-relaxed text-muted-foreground">
+          الأرقام دي تجربة شخصية للمؤسس، مش متوسط نتائج ولا وعد بدخل مماثل.
+        </p>
+
+
+
         <div className="mb-8 max-w-2xl">
           <p className="text-sm font-semibold tracking-[0.08em] text-accent">نظام الدايرة المقفولة</p>
           <h3 className="mt-4 text-[clamp(22px,3vw,32px)] font-semibold leading-[1.15] tracking-[-0.02em] text-foreground">

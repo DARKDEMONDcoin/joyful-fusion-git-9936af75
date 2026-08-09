@@ -181,14 +181,14 @@
   --font-serif: "Instrument Serif", "Amiri", serif;
   --color-hero-subtitle: var(--hero-subtitle);
 
-  --color-paper: #0a0608;
-  --color-paper-light: #14100f;
+  --color-paper: #002a42;
+  --color-paper-light: #003954;
   --color-ink: #ffffff;
   --color-brick: #ffffff;
   --color-stone: #b9b2ab;
   --color-gold: #f2e6d2;
   --color-gold-soft: #d8c9b0;
-  --color-obsidian: #0a0608;
+  --color-obsidian: #002a42;
   --color-ivory: #ffffff;
 }
 
@@ -200,7 +200,7 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #0a0608;
+  background: #002a42;
   color: #ffffff;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
@@ -209,7 +209,7 @@ body {
 
 ::selection {
   background: #ffffff;
-  color: #0a0608;
+  color: #002a42;
 }
 
 a:focus-visible,
@@ -237,7 +237,7 @@ select:focus-visible,
   }
   *::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.22);
-    border: 3px solid #0a0608;
+    border: 3px solid #002a42;
   }
 }
 
@@ -313,7 +313,7 @@ img {
 }
 
 @utility mobile-menu-glass {
-  background: rgba(10, 6, 8, 0.95);
+  background: rgba(0, 42, 66, 0.95);
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -368,7 +368,7 @@ img {
 
 /* شريط مقلوب: فاتح على داكن */
 .band-ink {
-  background: linear-gradient(180deg, #0f0a10 0%, #0a0608 100%);
+  background: linear-gradient(180deg, #00344f 0%, #002a42 100%);
   color: #ffffff;
 }
 .band-ink h1,

@@ -20,7 +20,7 @@ import {
   PainSection,
   PricingSection,
   SiteFooter,
-  StartingPointSection,
+  
   StickyCta,
   TrustStrip,
 } from "@/components/sections";

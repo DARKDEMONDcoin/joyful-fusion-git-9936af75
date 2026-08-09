@@ -39,12 +39,7 @@ export function SiteNav() {
 
   return (
     <>
-      <nav className="relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-6 md:px-8">
-        <Link to="/" className="font-display text-[26px] leading-none tracking-tight text-foreground">
-          الإمبراطورية
-          <sup className="text-xs">®</sup>
-        </Link>
-
+      <nav className="relative z-20 mx-auto flex w-full max-w-7xl items-center justify-center gap-4 px-6 py-6 md:px-8">
         <div className="hidden items-center gap-7 md:flex">
           <Link to="/tracks" className={navItem}>
             المسارات
@@ -59,23 +54,17 @@ export function SiteNav() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-5">
-          <Link
-            to={authTo}
-            className="liquid-glass hidden rounded-full px-6 py-2.5 text-sm text-foreground transition-transform hover:scale-[1.03] md:block"
-          >
-            {authLabel}
-          </Link>
-
+        <div className="flex w-full items-center justify-end md:hidden">
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="القائمة"
-            className="text-foreground md:hidden"
+            className="text-foreground"
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </nav>
+
 
       {open && (
         <div className="mobile-menu-glass absolute left-4 right-4 top-[68px] z-50 flex flex-col divide-y divide-border md:hidden">

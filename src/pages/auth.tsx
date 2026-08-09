@@ -45,13 +45,28 @@ function arabicAuthError(err: unknown): string {
 
 function AuthPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { session, loading: authLoading } = useAuth();
   const [mode, setMode] = useState<"signin" | "signup">("signup");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [ready, setReady] = useState(false);
 
+  const redirectTo =
+    (location.state as { from?: string } | null)?.from ?? "/welcome";
+
   useEffect(() => setReady(true), []);
+
+  // Already signed in? never show the login form again (until they sign out).
+  useEffect(() => {
+    if (!authLoading && session) navigate({ to: redirectTo, replace: true });
+  }, [authLoading, session, navigate, redirectTo]);
+
+  if (authLoading || session) {
+    return <div className="min-h-screen bg-background" aria-busy="true" />;
+  }
+
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();

@@ -131,7 +131,7 @@ export function PainSection() {
   ];
 
   return (
-    <section id="pain" className="mx-auto max-w-6xl px-6 py-24 md:px-14">
+    <section id="pain" className="mx-auto max-w-6xl px-6 py-16 md:py-20 md:px-14">
       <Head
         title="إنت مش فقير وقت… إنت بتدفع تمن"
         accent="كل يوم بتأجّل فيه"
@@ -160,7 +160,7 @@ export function PainSection() {
 
 export function CourseSection() {
   return (
-    <section id="course" className="border-t border-border py-24">
+    <section id="course" className="border-t border-border py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6 md:px-14">
         <SectionVisual src={secTracks} alt="لوحة تحكم متجر إلكتروني بتوضح المبيعات ونسبة التحويل" />
         <Head
@@ -215,7 +215,7 @@ export function DarkPsychologySection() {
   ];
 
   return (
-    <section id="psychology" className="border-t border-border py-24">
+    <section id="psychology" className="border-t border-border py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6 md:px-14">
         <div className="grid gap-14 lg:grid-cols-2 lg:items-center">
           <div>
@@ -321,7 +321,7 @@ export function ProofSection() {
   ];
 
   return (
-    <section id="proof" className="border-t border-border py-24">
+    <section id="proof" className="border-t border-border py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6 md:px-14">
         <SectionVisual src={secProof} alt="إشعارات استلام فلوس على الموبايل: 4,820 دولار Payoneer و96,400 جنيه تحويل بنكي" />
         <Head
@@ -463,7 +463,7 @@ export function CurriculumSection() {
   ];
 
   return (
-    <section id="curriculum" className="border-t border-border py-24">
+    <section id="curriculum" className="border-t border-border py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6 md:px-14">
         <SectionVisual src={secAi} alt="لوحة تحكم وكالة أتمتة بالذكاء الاصطناعي — عقد شهري 3,500 دولار و7 عملاء" />
         <Head
@@ -498,7 +498,7 @@ export const COURSE_INCLUDES = [
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="border-t border-border bg-secondary/40 py-24">
+    <section id="pricing" className="border-t border-border bg-secondary/40 py-16 md:py-20">
       <div className="mx-auto max-w-2xl px-6">
         <Head
           title="دفعة واحدة… وبعد كده ملكك"
@@ -640,7 +640,7 @@ export const faqs = [
 export function FaqSection() {
 
   return (
-    <section className="border-t border-border py-24">
+    <section className="border-t border-border py-16 md:py-20">
       <div className="mx-auto max-w-3xl px-6">
         <Head title="أسئلة بتتكرر… وردود" accent="بدون لف" center />
         <div className="grid gap-5">
@@ -755,7 +755,7 @@ export function ComparisonSection() {
   ];
 
   return (
-    <section className="border-t border-border py-24">
+    <section className="border-t border-border py-16 md:py-20">
       <div className="mx-auto max-w-5xl px-6 md:px-14">
         <Head
           title="فرق واحد بينا وبين أي كورس تاني: إحنا مش بنبيع"
@@ -807,7 +807,7 @@ export function AudienceSection() {
   ];
 
   return (
-    <section className="border-t border-border py-24">
+    <section className="border-t border-border py-16 md:py-20">
       <div className="mx-auto max-w-5xl px-6 md:px-14">
         <Head
           title="الكورس ده مش لكل الناس — وإحنا مرتاحين"
@@ -890,7 +890,7 @@ export function FounderSection() {
   ];
 
   return (
-    <section id="founder" className="border-t border-border bg-secondary/40 py-24">
+    <section id="founder" className="border-t border-border bg-secondary/40 py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6 md:px-14">
         <Head
           title="مش هبيعلك حماس — هوريك الطريق اللي مشيته"
@@ -1009,7 +1009,7 @@ export function InlineProof({ where }: { where: keyof typeof inlineProofs }) {
 
 export function GuaranteeSection() {
   return (
-    <section className="border-t border-border py-24">
+    <section className="border-t border-border py-16 md:py-20">
       <div className="mx-auto max-w-3xl px-6">
         <div className="glass-card  p-8 text-center sm:p-12">
           <p className="text-[12px] font-semibold tracking-[0.08em] text-accent">
@@ -1103,7 +1103,7 @@ const startCases: StartCase[] = [
 
 export function StartingPointSection() {
   return (
-    <section id="start-here" className="border-t border-border bg-background py-24">
+    <section id="start-here" className="border-t border-border bg-background py-16 md:py-20">
       <div className="mx-auto w-full max-w-[1240px] px-6 md:px-14">
         <Head
           title="مش معاك لابتوب ولا فلوس؟ الجزء ده ليك"
@@ -1222,7 +1222,7 @@ const ladder = [
 
 export function MoneyMathSection() {
   return (
-    <section id="money" className="border-t border-border bg-secondary/25 py-24">
+    <section id="money" className="border-t border-border bg-secondary/25 py-16 md:py-20">
       <div className="mx-auto w-full max-w-[1240px] px-6 md:px-14">
 
         <Head

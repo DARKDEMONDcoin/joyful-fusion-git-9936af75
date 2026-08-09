@@ -20,7 +20,7 @@ import {
   PainSection,
   PricingSection,
   SiteFooter,
-  StartingPointSection,
+  
   StickyCta,
   TrustStrip,
 } from "@/components/sections";
@@ -116,20 +116,21 @@ const marketCases = [
   {
     tag: "خدمات ومهارات",
     title: "عميل واحد بالدولار",
-    text: "الأسعار المعروضة علنًا للمستقلين العرب على Upwork و Fiverr بتبدأ من عشرات الدولارات للساعة. أول عقد صغير عندك ممكن يعادل راتب شهر هنا — لكنه محتاج عرض واضح و100 محاولة تواصل حقيقية.",
-    foot: "الطريق: مهارة → عرض → عميل → عقد شهري",
+    text: "أسعار المستقلين العرب معروضة علنًا على Upwork و Fiverr. أول عقد صغير ممكن يعادل راتب شهر هنا — محتاج عرض واضح وتواصل حقيقي.",
+    foot: "مهارة → عرض → عميل → عقد شهري",
   },
   {
     tag: "تجارة وأصول رقمية",
     title: "دخل مش مربوط بساعاتك",
-    text: "المتجر أو المنتج الرقمي أو الاشتراك بيشتغل وإنت نايم، والأهم إنه أصل ليه قيمة تقدر تبيعه بعدين. اللعبة هنا أرقام: تكلفة الطلب، الهامش، ونسبة التحويل — كلها بتتحسب قبل ما تصرف جنيه.",
-    foot: "الطريق: منتج → اختبار → توسّع → أصل",
+    text: "المتجر أو المنتج الرقمي بيشتغل وإنت نايم، وهو أصل ليه قيمة تقدر تبيعه. اللعبة أرقام: التكلفة، الهامش، ونسبة التحويل.",
+    foot: "منتج → اختبار → توسّع → أصل",
   },
   {
     tag: "ذكاء اصطناعي وأتمتة",
     title: "الشركات بتدفع عشان توفّر",
-    text: "أي نظام بيوفّر على شركة ساعات موظف كل يوم ليه سعر شهري. ده أسرع سوق بيكبر دلوقتي، وأغلب المصريين لسه مش داخلينه — والدخول محتاج أدوات وفهم للشغل مش شهادة.",
-    foot: "الطريق: أداة → نيتش → عقد شهري → وكالة",
+    text: "أي نظام بيوفّر على شركة ساعات شغل كل يوم ليه سعر شهري. أسرع سوق بيكبر دلوقتي، والدخول محتاج أدوات مش شهادة.",
+    foot: "أداة → نيتش → عقد شهري → وكالة",
+
   },
 ];
 
@@ -144,14 +145,14 @@ function Index() {
 
       <PainSection />
       <MoneyMathSection />
-      <StartingPointSection />
       <TracksList />
       <CurriculumSection />
       <Proof />
       <ComparisonSection />
-      <FounderSection />
       <AudienceSection />
+      <FounderSection />
       <GuaranteeSection />
+
 
       <PricingSection />
       <FaqSection />
@@ -212,17 +213,14 @@ function Hero() {
             </h1>
 
             <div className="mt-8 border-t border-foreground pt-6 md:columns-2 md:gap-10">
-              <p className="text-[16px] leading-[1.95] text-secondary-foreground">
+              <p className="text-[16px] leading-[1.9] text-secondary-foreground">
                 <span className="font-display text-[19px] font-bold text-accent">فرق العملة</span>
-                {" "} بيشتغل لصالحك لأول مرة: نفس الشغل اللي بيتدفع فيه بالجنيه هنا، بيتدفع فيه
-                بالدولار بره. والسقف مش راتب — السقف إنك تبني نظام دخل وأصل رقمي ليه قيمة تقدر
-                تبيعه بعدين.
+                {" "} بيشتغل لصالحك: نفس الشغل اللي بيتدفع فيه بالجنيه هنا، بيتدفع فيه بالدولار بره.
               </p>
-              <p className="mt-4 text-[16px] leading-[1.95] text-muted-foreground">
-                مش كورس فريلانس. جواه كل طرق الشغل أونلاين: خدمات ومهارات، تجارة إلكترونية، ذكاء
-                اصطناعي وأتمتة، منتجات رقمية واشتراكات، محتوى وعمولات، وبيع عالي القيمة — تختار
-                مسار واحد وتمشي على خطة يوم بيوم لحد أول دولار. النتيجة على قد شغلك.
+              <p className="mt-4 text-[16px] leading-[1.9] text-muted-foreground">
+                مش كورس فريلانس: 12 مسار دخل — تختار واحد وتمشي على خطة يوم بيوم لحد أول دولار.
               </p>
+
             </div>
 
 
@@ -302,7 +300,7 @@ function TracksList() {
   const [open, setOpen] = useState<string | null>(tracks[0]?.slug ?? null);
 
   return (
-    <section id="tracks" className="border-t border-border bg-secondary/25 py-24 md:py-32">
+    <section id="tracks" className="border-t border-border bg-secondary/25 py-16 md:py-24">
       <div className="mx-auto max-w-[1080px] px-6">
         <Reveal>
           <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -407,15 +405,16 @@ function TracksList() {
 
 function Proof() {
   return (
-    <section id="proof" className="mx-auto max-w-[1080px] px-6 py-24 md:py-32">
+    <section id="proof" className="mx-auto max-w-[1080px] px-6 py-16 md:py-24">
       <Reveal>
         <h2 className="max-w-[640px] font-display text-[clamp(30px,5.4vw,54px)] leading-[1.06] tracking-[-0.02em] text-foreground">
           مش شهادات مفبركة — <span className="text-accent">أرقام سوق تقدر تشوفها بنفسك</span>.
         </h2>
-        <p className="mt-6 max-w-[620px] text-[15.5px] leading-[1.95] text-muted-foreground">
-          أي حد يقدر يطبع لقطة تحويل ويكتب اسم. إحنا بنعمل العكس: بنوريك السوق نفسه — الأسعار
-          المعلنة على منصات الشغل، وطريقة حساب أرباح المتاجر والاشتراكات — وتقرر إنت بعقلك.
+        <p className="mt-5 max-w-[620px] text-[15.5px] leading-[1.9] text-muted-foreground">
+          أي حد يقدر يطبع لقطة تحويل. إحنا بنوريك السوق نفسه: الأسعار المعلنة وطريقة حساب الأرباح
+          — وتقرر بعقلك.
         </p>
+
       </Reveal>
 
       <Reveal>

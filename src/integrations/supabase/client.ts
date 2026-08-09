@@ -8,7 +8,7 @@ function isNewSupabaseApiKey(value: string): boolean {
 }
 
 function createSupabaseFetch(supabaseKey: string): typeof fetch {
-  return (input, init) => {
+  return async (input, init) => {
     const headers = new Headers(
       typeof Request !== 'undefined' && input instanceof Request ? input.headers : undefined,
     );
@@ -23,6 +23,16 @@ function createSupabaseFetch(supabaseKey: string): typeof fetch {
     }
 
     headers.set('apikey', supabaseKey);
+
+    // مستخدمو Clerk (تسجيل الدخول بأبل) يحملون توكن Clerk بدل جلسة Supabase.
+    const authHeader = headers.get('Authorization');
+    const isAnonAuth = !authHeader || authHeader === `Bearer ${supabaseKey}`;
+    const url = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url;
+    if (isAnonAuth && !url.includes('/auth/v1/')) {
+      const clerkToken = await getClerkToken();
+      if (clerkToken) headers.set('Authorization', `Bearer ${clerkToken}`);
+    }
+
     return fetch(input, { ...init, headers });
   };
 }
@@ -47,13 +57,6 @@ function createSupabaseClient() {
   return createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
     global: {
       fetch: createSupabaseFetch(SUPABASE_PUBLISHABLE_KEY),
-    },
-    accessToken: async () => {
-      // مستخدمو Clerk (تسجيل أبل) يستخدمون توكن Clerk، وغيرهم جلسة Supabase العادية.
-      const clerkToken = await getClerkToken();
-      if (clerkToken) return clerkToken;
-      const { data } = await _supabaseAuthRef!.auth.getSession();
-      return data.session?.access_token ?? null;
     },
     auth: {
       storage: typeof window !== 'undefined' ? localStorage : undefined,

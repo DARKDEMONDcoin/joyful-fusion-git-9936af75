@@ -25,8 +25,25 @@ export const Route = createPageRoute({
 function OAuthCallback() {
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
+  const { isLoaded: clerkLoaded, isSignedIn: clerkSignedIn } = useClerkAuth();
+  const isClerkCallback =
+    clerkEnabled &&
+    typeof window !== "undefined" &&
+    (window.location.search.includes("__clerk") ||
+      window.location.hash.includes("__clerk") ||
+      sessionStorage.getItem("auth:provider") === "clerk");
+
+  // Clerk: أكمل تبادل الـ SSO ثم حوّل للوجهة المحفوظة
+  useEffect(() => {
+    if (!isClerkCallback || !clerkLoaded || !clerkSignedIn) return;
+    const target = sessionStorage.getItem("auth:redirect") || "/welcome";
+    sessionStorage.removeItem("auth:redirect");
+    sessionStorage.removeItem("auth:provider");
+    navigate({ to: target, replace: true });
+  }, [isClerkCallback, clerkLoaded, clerkSignedIn, navigate]);
 
   useEffect(() => {
+    if (isClerkCallback) return;
     let done = false;
 
     const params = new URLSearchParams(window.location.search);
@@ -48,6 +65,7 @@ function OAuthCallback() {
       sessionStorage.removeItem("auth:redirect");
       navigate({ to: target, replace: true });
     };
+
 
     const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
       if (session) finish();

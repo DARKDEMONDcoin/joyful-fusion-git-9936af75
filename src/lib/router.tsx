@@ -180,9 +180,9 @@ function applyHead(head: HeadConfig) {
   }
 
   return () => {
-    document.title = previousTitle;
     for (const el of created) el.remove();
   };
+
 }
 
 export function useHead(head: HeadConfig | undefined) {

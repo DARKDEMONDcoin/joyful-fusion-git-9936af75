@@ -106,7 +106,7 @@ function AuthPage() {
           return;
         }
         toast.success("تم إنشاء حسابك ✅");
-        navigate({ to: "/welcome" });
+        navigate({ to: redirectTo, replace: true });
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({
           email: mail,
@@ -115,7 +115,7 @@ function AuthPage() {
         if (error) throw error;
         if (!data.session) throw new Error("Invalid login credentials");
         toast.success("أهلاً بيك 👋");
-        navigate({ to: "/welcome" });
+        navigate({ to: redirectTo, replace: true });
       }
     } catch (err) {
       toast.error(arabicAuthError(err));
@@ -145,15 +145,28 @@ function AuthPage() {
   }
 
   async function oauth(provider: "google" | "apple") {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider,
-      options: {
-        redirectTo: window.location.origin + "/oauth-callback",
-        ...(provider === "google" ? { queryParams: { prompt: "select_account" } } : {}),
-      },
-    });
-    if (error) toast.error(arabicAuthError(error));
+    if (loading) return;
+    setLoading(true);
+    try {
+      // remember where to land after the provider redirect
+      sessionStorage.setItem("auth:redirect", redirectTo);
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: window.location.origin + "/oauth-callback",
+          ...(provider === "google"
+            ? { queryParams: { prompt: "select_account" } }
+            : // Apple returns name/email only on the very first consent
+              { scopes: "name email" }),
+        },
+      });
+      if (error) throw error;
+    } catch (err) {
+      setLoading(false);
+      toast.error(arabicAuthError(err));
+    }
   }
+
 
   return (
     <div dir="rtl" className="min-h-screen bg-background font-arabic">

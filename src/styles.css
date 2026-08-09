@@ -143,52 +143,50 @@
   }
 }
 
-/* ===== ثيم «Drift» — كريمي دافئ + بنّي عميق =====
- * خلفية كريمي #F6E4CF · نص بنّي داكن #321C04 · بطاقات #FFF9F2
- * أكسنت مهدّئ #D9C4AA — لغة بصرية هادئة عالية القراءة.
+/* ===== ثيم «Serene» — ليل عميق + زجاج سائل + توهّج أبيض =====
+ * خلفية #0a0608 · نص أبيض · أسطح زجاجية شفافة · أكسنت عاجي دافئ
  */
 :root {
-  --radius: 14px;
-  --background: oklch(0.917 0.036 74);      /* #F6E4CF */
-  --foreground: oklch(0.259 0.045 58);      /* #321C04 */
-  --card: oklch(0.978 0.014 80);            /* #FFF9F2 */
-  --card-foreground: oklch(0.259 0.045 58);
-  --popover: oklch(0.978 0.014 80);
-  --popover-foreground: oklch(0.259 0.045 58);
-  --primary: oklch(0.259 0.045 58);
-  --primary-foreground: oklch(0.978 0.014 80);
-  --secondary: oklch(0.855 0.038 76);       /* #E7D3B9 */
-  --secondary-foreground: oklch(0.259 0.045 58);
-  --muted: oklch(0.855 0.038 76);
-  --muted-foreground: oklch(0.455 0.05 60); /* بنّي متوسط */
-  --accent: oklch(0.259 0.045 58);
-  --accent-foreground: oklch(0.978 0.014 80);
-  --destructive: oklch(0.52 0.16 30);
-  --destructive-foreground: oklch(0.978 0.014 80);
-  --border: oklch(0.259 0.045 58 / 16%);
-  --input: oklch(0.259 0.045 58 / 26%);
-  --ring: oklch(0.259 0.045 58 / 45%);
-  --hero-subtitle: oklch(0.42 0.05 60);
+  --radius: 18px;
+  --background: oklch(0.13 0.008 20);        /* #0a0608 */
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.17 0.008 20);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.17 0.008 20);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.13 0.008 20);
+  --secondary: oklch(0.24 0.01 25);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.24 0.01 25);
+  --muted-foreground: oklch(0.75 0.01 60);
+  --accent: oklch(0.93 0.03 85);             /* عاجي دافئ */
+  --accent-foreground: oklch(0.13 0.008 20);
+  --destructive: oklch(0.6 0.19 25);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 14%);
+  --input: oklch(1 0 0 / 20%);
+  --ring: oklch(1 0 0 / 45%);
+  --hero-subtitle: oklch(0.82 0.01 80);
 }
 
 @theme {
-  --font-sans: "IBM Plex Sans Arabic", "Cairo", system-ui, sans-serif;
-  --font-arabic: "IBM Plex Sans Arabic", "Cairo", system-ui, sans-serif;
-  --font-display: "Amiri", "Times New Roman", serif;
-  --font-garamond: "Amiri", "Times New Roman", serif;
-  --font-serif: "Amiri", "Times New Roman", serif;
+  --font-sans: "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-arabic: "IBM Plex Sans Arabic", "Inter", system-ui, sans-serif;
+  --font-display: "Instrument Serif", "Amiri", serif;
+  --font-garamond: "Instrument Serif", "Amiri", serif;
+  --font-serif: "Instrument Serif", "Amiri", serif;
   --color-hero-subtitle: var(--hero-subtitle);
 
-  /* أسماء متوافقة مع الكود القديم لكن بقيم الثراء الجديدة */
-  --color-paper: #f6e4cf;
-  --color-paper-light: #fff9f2;
-  --color-ink: #321c04;
-  --color-brick: #321c04;
-  --color-stone: #8a6a45;
-  --color-gold: #321c04;
-  --color-gold-soft: #1f1003;
-  --color-obsidian: #321c04;
-  --color-ivory: #fff9f2;
+  --color-paper: #0a0608;
+  --color-paper-light: #14100f;
+  --color-ink: #ffffff;
+  --color-brick: #ffffff;
+  --color-stone: #b9b2ab;
+  --color-gold: #f2e6d2;
+  --color-gold-soft: #d8c9b0;
+  --color-obsidian: #0a0608;
+  --color-ivory: #ffffff;
 }
 
 html {
@@ -199,16 +197,16 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f6e4cf;
-  color: #321c04;
+  background: #0a0608;
+  color: #ffffff;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: #321c04;
-  color: #fff9f2;
+  background: #ffffff;
+  color: #0a0608;
 }
 
 a:focus-visible,
@@ -217,23 +215,26 @@ input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid #321c04;
+  outline: 2px solid rgba(255, 255, 255, 0.7);
   outline-offset: 3px;
-  border-radius: 8px;
+  border-radius: 10px;
 }
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
 @media (pointer: fine) {
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(50, 28, 4, 0.3) transparent;
+    scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
   }
   *::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
   *::-webkit-scrollbar-thumb {
-    background: rgba(50, 28, 4, 0.28);
-    border: 3px solid #f6e4cf;
+    background: rgba(255, 255, 255, 0.22);
+    border: 3px solid #0a0608;
   }
 }
 
@@ -254,81 +255,106 @@ img {
 }
 
 @utility font-garamond {
-  font-family: "Amiri", "Times New Roman", serif;
+  font-family: "Instrument Serif", "Amiri", serif;
 }
 
 @utility font-display {
-  font-family: "Amiri", "Times New Roman", serif;
+  font-family: "Instrument Serif", "Amiri", serif;
 }
 
-/* ===== أسطح مطبوعة: خط رفيع بدل الزجاج والظلال ===== */
+@utility font-script {
+  font-family: "Dancing Script", cursive;
+}
+
+/* ===== أسطح زجاجية سائلة ===== */
 @utility liquid-glass {
-  background: #fff9f2;
-  border: 1px solid rgba(50, 28, 4, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
   overflow: hidden;
 }
 
 @utility glass-pill {
-  background: rgba(255, 249, 242, 0.7);
-  border: 1px solid rgba(50, 28, 4, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 9999px;
 }
 
 @utility glass-card {
-  background: #fff9f2;
-  border: 1px solid rgba(50, 28, 4, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
 }
 
 @utility hover-lift {
   transition:
-    background-color 0.25s ease,
-    border-color 0.25s ease,
-    color 0.25s ease;
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease;
   &:hover {
-    background-color: #fffdfa;
-    border-color: rgba(50, 28, 4, 0.4);
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
   }
 }
 
 @utility mobile-menu-glass {
-  background: #fff9f2;
-  border: 1px solid rgba(50, 28, 4, 0.22);
+  background: rgba(10, 6, 8, 0.95);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 20px;
 }
 
-/* رقم إديتوريال ضخم */
+@utility text-glow {
+  text-shadow:
+    0 0 40px rgba(255, 255, 255, 0.4),
+    0 0 80px rgba(255, 255, 255, 0.2),
+    0 0 120px rgba(255, 255, 255, 0.1);
+}
+
+@utility button-glow {
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.1);
+}
+
 @utility folio {
-  font-family: "Amiri", serif;
+  font-family: "Instrument Serif", serif;
   font-size: clamp(38px, 6vw, 64px);
   line-height: 0.85;
-  color: #321c04;
+  color: rgba(255, 255, 255, 0.92);
 }
 
-/* عنوان بخط تحت ذهبي */
 @utility rule-under {
-  border-bottom: 2px solid #d9c4aa;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
 }
 
-/* معالجة الصور التحريرية: دوتون ذهبي موحّد + عودة اللون الطبيعي عند اللمس/الهوفر */
 @utility editorial-img {
-  filter: grayscale(0.55) contrast(1.03) brightness(1.02) sepia(0.28)
-    saturate(1.05);
+  filter: grayscale(0.35) contrast(1.05) brightness(0.9);
   transition:
     filter 700ms cubic-bezier(0.2, 0.7, 0.2, 1),
     transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
   will-change: filter;
 
   &:hover {
-    filter: grayscale(0) contrast(1.02) brightness(1.02) sepia(0.04)
-      saturate(1.05);
+    filter: grayscale(0) contrast(1.02) brightness(1);
   }
 }
 
-/* صور الأشخاص: لون طبيعي هادئ لبناء الثقة */
 @utility portrait-img {
-  filter: contrast(1.03) saturate(0.9) brightness(0.99);
+  filter: contrast(1.05) saturate(0.95) brightness(0.95);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -337,18 +363,17 @@ img {
   }
 }
 
-
-/* شريط حبر مقلوب */
+/* شريط مقلوب: فاتح على داكن */
 .band-ink {
-  background: #321c04;
-  color: #fff9f2;
+  background: linear-gradient(180deg, #0f0a10 0%, #0a0608 100%);
+  color: #ffffff;
 }
 .band-ink h1,
 .band-ink h2,
 .band-ink h3,
 .band-ink strong,
 .band-ink figcaption {
-  color: #fff9f2 !important;
+  color: #ffffff !important;
 }
 .band-ink p,
 .band-ink li,
@@ -356,21 +381,20 @@ img {
 .band-ink dd,
 .band-ink blockquote,
 .band-ink span:not(.band-chip) {
-  color: rgba(255, 249, 242, 0.75) !important;
+  color: rgba(255, 255, 255, 0.72) !important;
 }
 .band-ink .glass-card,
 .band-ink .liquid-glass {
-  background: rgba(255, 249, 242, 0.07) !important;
-  border-color: rgba(255, 249, 242, 0.24) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
 }
 .band-ink .border-border,
 .band-ink hr,
 .band-ink .divide-border > * {
-  border-color: rgba(255, 249, 242, 0.24) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
 }
-/* الذهب يظل ذهبًا داخل الأشرطة الداكنة */
 .band-ink .text-accent {
-  color: #d9c4aa !important;
+  color: #f2e6d2 !important;
 }
 
 /* ===== تيكر أفقي ===== */
@@ -391,18 +415,18 @@ img {
 }
 .scroll-cue { animation: scroll-cue 1.9s ease-in-out infinite; }
 
-/* صف مسار في جدول المسارات */
 .track-row { transition: background-color .25s ease; }
-.track-row:hover { background-color: rgba(50, 28, 4, 0.06); }
+.track-row:hover { background-color: rgba(255, 255, 255, 0.06); }
 
-/* حبيبات ورق خفيفة */
+/* حبيبات خفيفة */
 .paper-grain::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 60;
-  opacity: 0.035;
+  opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
 

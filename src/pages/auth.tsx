@@ -5,6 +5,8 @@ import { toast } from "sonner";
 import { Apple, Loader2, Lock, Mail } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
+import { useSignIn } from "@clerk/clerk-react";
+import { clerkEnabled } from "@/lib/clerk-supabase";
 
 
 const title = "تسجيل الدخول | كورس الشغل أونلاين";
@@ -55,8 +57,9 @@ function AuthPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [ready, setReady] = useState(false);
+  const { signIn: clerkSignIn, isLoaded: clerkReady } = useSignIn();
   const [providers, setProviders] = useState<{ apple: boolean; google: boolean }>({
-    apple: false,
+    apple: clerkEnabled,
     google: true,
   });
 
@@ -77,7 +80,8 @@ function AuthPage() {
       .then((json) => {
         if (!active || !json?.external) return;
         setProviders({
-          apple: Boolean(json.external.apple),
+          // أبل يعمل عبر Supabase مباشرة أو عبر Clerk (Third-Party Auth)
+          apple: Boolean(json.external.apple) || clerkEnabled,
           google: Boolean(json.external.google),
         });
       })
@@ -175,6 +179,23 @@ function AuthPage() {
     if (loading) return;
     setLoading(true);
     try {
+      // أبل مش مفعّل على Supabase Auth → نستخدم Clerk المفعّل كـ Third-Party Auth
+      if (provider === "apple" && clerkEnabled) {
+        if (!clerkReady || !clerkSignIn) {
+          setLoading(false);
+          toast.error("لحظة، جاري تجهيز تسجيل الدخول بأبل…");
+          return;
+        }
+        sessionStorage.setItem("auth:redirect", redirectTo);
+        sessionStorage.setItem("auth:provider", "clerk");
+        await clerkSignIn.authenticateWithRedirect({
+          strategy: "oauth_apple",
+          redirectUrl: window.location.origin + "/oauth-callback",
+          redirectUrlComplete: window.location.origin + "/oauth-callback",
+        });
+        return;
+      }
+
       // remember where to land after the provider redirect
       sessionStorage.setItem("auth:redirect", redirectTo);
       const { error } = await supabase.auth.signInWithOAuth({

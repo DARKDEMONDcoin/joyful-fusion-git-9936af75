@@ -9,7 +9,10 @@ import {
   useLocation,
 } from "react-router-dom";
 
+import { ClerkProvider } from "@clerk/clerk-react";
+
 import { AuthProvider, useAuth } from "@/hooks/use-auth";
+import { CLERK_PUBLISHABLE_KEY } from "@/lib/clerk-supabase";
 import { RouteNotFound } from "@/lib/router";
 import { Route as HomeRoute } from "@/pages/home";
 import { Route as AboutRoute } from "@/pages/about";
@@ -70,6 +73,7 @@ function RequireAuth({ children }: { children?: ReactNode }) {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} afterSignOutUrl="/">
       <AuthProvider>
         <BrowserRouter>
           <ScrollToTop />
@@ -97,6 +101,7 @@ export default function App() {
           </Routes>
         </BrowserRouter>
       </AuthProvider>
+      </ClerkProvider>
     </QueryClientProvider>
   );
 }

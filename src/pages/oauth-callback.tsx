@@ -2,6 +2,11 @@ import { createPageRoute, useNavigate } from "@/lib/router";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  AuthenticateWithRedirectCallback,
+  useAuth as useClerkAuth,
+} from "@clerk/clerk-react";
+import { clerkEnabled } from "@/lib/clerk-supabase";
 
 const title = "جاري تسجيل الدخول | كورس الشغل أونلاين";
 const description = "بنكمّل تسجيل دخولك بحساب جوجل ونحوّلك على لوحة الطالب.";
@@ -25,8 +30,25 @@ export const Route = createPageRoute({
 function OAuthCallback() {
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
+  const { isLoaded: clerkLoaded, isSignedIn: clerkSignedIn } = useClerkAuth();
+  const isClerkCallback =
+    clerkEnabled &&
+    typeof window !== "undefined" &&
+    (window.location.search.includes("__clerk") ||
+      window.location.hash.includes("__clerk") ||
+      sessionStorage.getItem("auth:provider") === "clerk");
+
+  // Clerk: أكمل تبادل الـ SSO ثم حوّل للوجهة المحفوظة
+  useEffect(() => {
+    if (!isClerkCallback || !clerkLoaded || !clerkSignedIn) return;
+    const target = sessionStorage.getItem("auth:redirect") || "/welcome";
+    sessionStorage.removeItem("auth:redirect");
+    sessionStorage.removeItem("auth:provider");
+    navigate({ to: target, replace: true });
+  }, [isClerkCallback, clerkLoaded, clerkSignedIn, navigate]);
 
   useEffect(() => {
+    if (isClerkCallback) return;
     let done = false;
 
     const params = new URLSearchParams(window.location.search);
@@ -48,6 +70,7 @@ function OAuthCallback() {
       sessionStorage.removeItem("auth:redirect");
       navigate({ to: target, replace: true });
     };
+
 
     const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
       if (session) finish();
@@ -84,7 +107,7 @@ function OAuthCallback() {
       sub.subscription.unsubscribe();
       window.clearTimeout(timeout);
     };
-  }, [navigate]);
+  }, [navigate, isClerkCallback]);
 
 
   return (
@@ -92,6 +115,12 @@ function OAuthCallback() {
       dir="rtl"
       className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background px-6 text-center font-arabic"
     >
+      {isClerkCallback && !clerkSignedIn && (
+        <AuthenticateWithRedirectCallback
+          signInFallbackRedirectUrl="/welcome"
+          signUpFallbackRedirectUrl="/welcome"
+        />
+      )}
       {error ? (
         <>
           <p className="text-sm text-muted-foreground">{error}</p>

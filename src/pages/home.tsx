@@ -184,7 +184,7 @@ function Hero() {
           <span dir="ltr">999 EGP · مدى الحياة</span>
         </div>
 
-        <div className="grid gap-10 px-6 py-14 md:grid-cols-[1.55fr_1fr] md:gap-14 md:px-14 md:py-20">
+        <div className="grid gap-10 px-6 py-14 md:px-14 md:py-20 lg:grid-cols-[1.55fr_1fr] lg:gap-14">
           <div>
             <motion.div
               initial={{ opacity: 0 }}

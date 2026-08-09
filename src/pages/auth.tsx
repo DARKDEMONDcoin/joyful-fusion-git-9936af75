@@ -1,8 +1,11 @@
 import { createPageRoute, Link, useNavigate } from "@/lib/router";
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Apple, Loader2, Lock, Mail } from "lucide-react";
+import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
+
 
 const title = "تسجيل الدخول | كورس الشغل أونلاين";
 const description =
@@ -45,13 +48,28 @@ function arabicAuthError(err: unknown): string {
 
 function AuthPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { session, loading: authLoading } = useAuth();
   const [mode, setMode] = useState<"signin" | "signup">("signup");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [ready, setReady] = useState(false);
 
+  const redirectTo =
+    (location.state as { from?: string } | null)?.from ?? "/welcome";
+
   useEffect(() => setReady(true), []);
+
+  // Already signed in? never show the login form again (until they sign out).
+  useEffect(() => {
+    if (!authLoading && session) navigate({ to: redirectTo, replace: true });
+  }, [authLoading, session, navigate, redirectTo]);
+
+  if (authLoading || session) {
+    return <div className="min-h-screen bg-background" aria-busy="true" />;
+  }
+
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -88,7 +106,7 @@ function AuthPage() {
           return;
         }
         toast.success("تم إنشاء حسابك ✅");
-        navigate({ to: "/welcome" });
+        navigate({ to: redirectTo, replace: true });
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({
           email: mail,
@@ -97,7 +115,7 @@ function AuthPage() {
         if (error) throw error;
         if (!data.session) throw new Error("Invalid login credentials");
         toast.success("أهلاً بيك 👋");
-        navigate({ to: "/welcome" });
+        navigate({ to: redirectTo, replace: true });
       }
     } catch (err) {
       toast.error(arabicAuthError(err));
@@ -127,15 +145,28 @@ function AuthPage() {
   }
 
   async function oauth(provider: "google" | "apple") {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider,
-      options: {
-        redirectTo: window.location.origin + "/oauth-callback",
-        ...(provider === "google" ? { queryParams: { prompt: "select_account" } } : {}),
-      },
-    });
-    if (error) toast.error(arabicAuthError(error));
+    if (loading) return;
+    setLoading(true);
+    try {
+      // remember where to land after the provider redirect
+      sessionStorage.setItem("auth:redirect", redirectTo);
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: window.location.origin + "/oauth-callback",
+          ...(provider === "google"
+            ? { queryParams: { prompt: "select_account" } }
+            : // Apple returns name/email only on the very first consent
+              { scopes: "name email" }),
+        },
+      });
+      if (error) throw error;
+    } catch (err) {
+      setLoading(false);
+      toast.error(arabicAuthError(err));
+    }
   }
+
 
   return (
     <div dir="rtl" className="min-h-screen bg-background font-arabic">

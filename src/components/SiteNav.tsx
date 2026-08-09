@@ -1,30 +1,18 @@
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useRouterState } from "@/lib/router";
-import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/use-auth";
 
 const links = ["المحتوى", "النتايج", "الأسعار"];
 const targets = ["curriculum", "proof", "pricing"];
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
-  const [signedIn, setSignedIn] = useState<boolean | null>(null);
+  const { session, loading } = useAuth();
+  const signedIn = loading ? null : Boolean(session);
   const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
-  useEffect(() => {
-    let active = true;
-    void supabase.auth.getSession().then(({ data }) => {
-      if (active) setSignedIn(!!data.session);
-    });
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
-      setSignedIn(!!session);
-    });
-    return () => {
-      active = false;
-      sub.subscription.unsubscribe();
-    };
-  }, []);
 
   const scrollToId = (id: string) => {
     const el = document.getElementById(id);

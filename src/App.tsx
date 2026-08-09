@@ -9,7 +9,7 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import { supabase } from "@/integrations/supabase/client";
+import { AuthProvider, useAuth } from "@/hooks/use-auth";
 import { RouteNotFound } from "@/lib/router";
 import { Route as HomeRoute } from "@/pages/home";
 import { Route as AboutRoute } from "@/pages/about";
@@ -26,9 +26,9 @@ import { Route as TrackDetailRoute } from "@/pages/track-detail";
 import { Route as CheckoutRoute } from "@/pages/_authenticated/checkout";
 import { Route as DashboardRoute } from "@/pages/_authenticated/dashboard";
 import { Route as WelcomeRoute } from "@/pages/_authenticated/welcome";
-import { useState } from "react";
 
 const queryClient = new QueryClient();
+
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -47,59 +47,57 @@ function ScrollToTop() {
   return null;
 }
 
-/** Client-side auth gate replacing the old `_authenticated` layout route. */
+/** Client-side auth gate: keeps the user signed in until they log out. */
 function RequireAuth({ children }: { children?: ReactNode }) {
-  const [state, setState] = useState<"loading" | "in" | "out">("loading");
+  const { session, loading } = useAuth();
+  const location = useLocation();
 
-  useEffect(() => {
-    let active = true;
-    void supabase.auth.getSession().then(({ data }) => {
-      if (active) setState(data.session ? "in" : "out");
-    });
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
-      setState(session ? "in" : "out");
-    });
-    return () => {
-      active = false;
-      sub.subscription.unsubscribe();
-    };
-  }, []);
-
-  if (state === "loading") {
+  if (loading) {
     return <div className="min-h-screen bg-background" aria-busy="true" />;
   }
-  if (state === "out") return <Navigate to="/auth" replace />;
+  if (!session) {
+    return (
+      <Navigate
+        to="/auth"
+        replace
+        state={{ from: location.pathname + location.search + location.hash }}
+      />
+    );
+  }
   return <>{children ?? <Outlet />}</>;
 }
 
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<HomeRoute.Page />} />
-          <Route path="/about" element={<AboutRoute.Page />} />
-          <Route path="/auth" element={<AuthRoute.Page />} />
-          <Route path="/contact" element={<ContactRoute.Page />} />
-          <Route path="/faq" element={<FaqRoute.Page />} />
-          <Route path="/oauth-callback" element={<OauthCallbackRoute.Page />} />
-          <Route path="/privacy" element={<PrivacyRoute.Page />} />
-          <Route path="/refund" element={<RefundRoute.Page />} />
-          <Route path="/reset-password" element={<ResetPasswordRoute.Page />} />
-          <Route path="/terms" element={<TermsRoute.Page />} />
-          <Route path="/tracks" element={<TracksRoute.Page />} />
-          <Route path="/tracks/:slug" element={<TrackDetailRoute.Page />} />
+      <AuthProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<HomeRoute.Page />} />
+            <Route path="/about" element={<AboutRoute.Page />} />
+            <Route path="/auth" element={<AuthRoute.Page />} />
+            <Route path="/contact" element={<ContactRoute.Page />} />
+            <Route path="/faq" element={<FaqRoute.Page />} />
+            <Route path="/oauth-callback" element={<OauthCallbackRoute.Page />} />
+            <Route path="/privacy" element={<PrivacyRoute.Page />} />
+            <Route path="/refund" element={<RefundRoute.Page />} />
+            <Route path="/reset-password" element={<ResetPasswordRoute.Page />} />
+            <Route path="/terms" element={<TermsRoute.Page />} />
+            <Route path="/tracks" element={<TracksRoute.Page />} />
+            <Route path="/tracks/:slug" element={<TrackDetailRoute.Page />} />
 
-          <Route element={<RequireAuth />}>
-            <Route path="/checkout" element={<CheckoutRoute.Page />} />
-            <Route path="/dashboard" element={<DashboardRoute.Page />} />
-            <Route path="/welcome" element={<WelcomeRoute.Page />} />
-          </Route>
+            <Route element={<RequireAuth />}>
+              <Route path="/checkout" element={<CheckoutRoute.Page />} />
+              <Route path="/dashboard" element={<DashboardRoute.Page />} />
+              <Route path="/welcome" element={<WelcomeRoute.Page />} />
+            </Route>
 
-          <Route path="*" element={<RouteNotFound />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path="*" element={<RouteNotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
+

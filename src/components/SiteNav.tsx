@@ -39,10 +39,10 @@ export function SiteNav() {
 
   return (
     <>
-      <nav className="relative z-20 flex items-center justify-between gap-4 border-b border-border px-6 py-4 md:px-14">
-        <Link to="/" className="font-display text-[22px] font-bold leading-none text-foreground">
+      <nav className="relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-6 md:px-8">
+        <Link to="/" className="font-display text-[26px] leading-none tracking-tight text-foreground">
           الإمبراطورية
-          <span className="text-accent">.</span>
+          <sup className="text-xs">®</sup>
         </Link>
 
         <div className="hidden items-center gap-7 md:flex">
@@ -62,10 +62,11 @@ export function SiteNav() {
         <div className="flex items-center gap-5">
           <Link
             to={authTo}
-            className="hidden border border-foreground px-5 py-2.5 text-[13px] font-semibold tracking-[0.04em] text-foreground transition-colors hover:bg-foreground hover:text-background md:block"
+            className="liquid-glass hidden rounded-full px-6 py-2.5 text-sm text-foreground transition-transform hover:scale-[1.03] md:block"
           >
             {authLabel}
           </Link>
+
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="القائمة"

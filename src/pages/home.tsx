@@ -170,132 +170,89 @@ function Index() {
 
 /* ============================ الهيرو — واجهة جريدة ============================ */
 
+const HERO_VIDEO =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4";
+
 function Hero() {
   return (
-    <section className="relative w-full bg-background">
-      <div className="mx-auto w-full max-w-[1240px] border-x border-border">
+    <section className="relative min-h-[100svh] w-full overflow-hidden bg-background">
+      <video
+        className="absolute inset-0 z-0 h-full w-full object-cover"
+        src={HERO_VIDEO}
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-hidden="true"
+      />
+
+      <div
+        className="absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(0,26,42,0.55)_0%,rgba(0,26,42,0.35)_45%,rgba(0,26,42,0.75)_100%)]"
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 flex min-h-[100svh] flex-col">
         <SiteNav />
 
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-6 py-2.5 text-[11.5px] tracking-[0.08em] text-muted-foreground md:px-14">
-          <span>مكانك في مصر… وسعرك في السوق العالمي</span>
-          <span dir="ltr">Kashier · فيزا وميزة وفوري وفودافون كاش</span>
-        </div>
+        <div className="flex flex-1 flex-col items-center justify-center px-6 py-20 text-center md:py-[90px]">
+          <span className="animate-fade-rise mb-6 inline-flex items-center gap-3 text-[11px] font-semibold tracking-[0.3em] text-muted-foreground">
+            12 مسار دخل · مسار واحد يكفيك
+          </span>
 
+          <h1
+            className="animate-fade-rise max-w-5xl font-display text-[clamp(38px,7vw,80px)] font-normal leading-[1.25] tracking-[-0.02em] text-foreground [text-wrap:balance]"
+          >
+            اتعلّم تشتغل من مصر{" "}
+            <em className="not-italic text-muted-foreground">وتتقبض بالدولار.</em>
+          </h1>
 
+          <p className="animate-fade-rise-delay mt-8 max-w-2xl text-[16px] leading-relaxed text-muted-foreground sm:text-[18px]">
+            من غير خبرة ومن غير رأس مال. تختار مسار واحد من 12 مسار دخل حقيقي على النت، وتمشي على
+            خطوات واضحة يوم بيوم لحد أول تحويل يوصلك — وبعدها تحوّله لأصل بيكبر لوحده.
+          </p>
 
-
-        <div className="grid gap-10 px-6 py-14 md:px-14 md:py-20 lg:grid-cols-[1.55fr_1fr] lg:gap-14">
-          <div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="mb-6 flex items-center gap-3"
+          <div className="animate-fade-rise-delay-2 mt-12 flex flex-col items-center gap-4 sm:flex-row">
+            <Link
+              to="/auth"
+              className="liquid-glass group inline-flex items-center justify-center gap-2 rounded-full px-14 py-5 text-base text-foreground transition-transform hover:scale-[1.03]"
             >
-              <span className="h-px w-12 bg-accent" aria-hidden="true" />
-              <span className="text-[11px] font-semibold tracking-[0.3em] text-accent">
-                12 مسار دخل · مسار واحد يكفيك
-              </span>
-            </motion.div>
-
-            <h1 className="font-display text-[clamp(40px,7.6vw,84px)] font-bold leading-[1.42] text-foreground [text-wrap:balance]">
-              {["اتعلّم تشتغل من مصر", "وتتقبض بالدولار."].map((line, i) => (
-
-
-                <motion.span
-                  key={line}
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.08 + i * 0.1, ease: [0.22, 0.61, 0.36, 1] }}
-                  className={i === 1 ? "block text-accent" : "block"}
-                >
-                  {line}
-                </motion.span>
-              ))}
-            </h1>
-
-            <div className="mt-8 border-t border-foreground pt-6 md:columns-2 md:gap-10">
-              <p className="text-[16px] leading-[1.9] text-secondary-foreground">
-                <span className="font-display text-[19px] font-bold text-accent">من غير خبرة، ومن غير رأس مال.</span>
-                {" "} تختار مسار واحد من 12 مسار دخل حقيقي على النت، وتمشي على خطوات واضحة يوم بيوم لحد أول تحويل يوصلك.
-              </p>
-              <p className="mt-4 text-[16px] leading-[1.9] text-muted-foreground">
-                وبعدها الجزء المهم: تحوّل الشغل ده لأصل بيكبر لوحده — دخل بيستمر حتى في الشهور اللي مش بتشتغل فيها كتير.
-              </p>
-
-
-
-            </div>
-
-
-
-
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link
-                to="/auth"
-                className="group inline-flex h-[54px] items-center justify-center gap-2 bg-accent px-8 text-[15px] font-semibold text-accent-foreground transition-colors hover:bg-[--color-gold-soft]"
-              >
-                ابدأ مسارك دلوقتي
-                <ArrowLeft
-                  size={17}
-                  className="transition-transform duration-300 group-hover:-translate-x-1"
-                />
-              </Link>
-              <a
-                href="#tracks"
-                className="inline-flex h-[54px] items-center justify-center border border-foreground px-7 text-[15px] font-semibold text-foreground transition-colors hover:bg-foreground hover:text-background"
-              >
-                شوف الـ 12 مسار
-              </a>
-            </div>
+              ابدأ مسارك دلوقتي
+              <ArrowLeft
+                size={17}
+                className="transition-transform duration-300 group-hover:-translate-x-1"
+              />
+            </Link>
+            <a
+              href="#tracks"
+              className="inline-flex items-center justify-center rounded-full border border-border px-10 py-5 text-base text-foreground/85 transition-colors hover:text-foreground"
+            >
+              شوف الـ 12 مسار
+            </a>
           </div>
 
-          <aside className="border-t border-border pt-8 lg:border-r lg:border-t-0 lg:pr-10 lg:pt-0">
-            <figure className="border border-border">
-              <img
-                src={heroPoster}
-                alt="طالب مصري بيشتغل أونلاين من مكتبه ويستلم أرباحه بالدولار"
-                fetchPriority="high"
-                decoding="async"
-                width={1920}
-                height={1088}
-                className="editorial-img h-[240px] w-full object-cover"
-              />
-              <figcaption className="border-t border-border px-4 py-2.5 text-[12px] text-muted-foreground">
-                نفس اللابتوب اللي قدامك دلوقتي — الفرق في اللي بتفتحه عليه.
-              </figcaption>
-
-            </figure>
-
-            <dl className="mt-8 divide-y divide-border border-y border-border">
-              {[
-                ["عدد المسارات", "12 مسار"],
-                ["مدة الخطة", "60 يوم"],
-                ["ساعات المحتوى", "38 ساعة"],
-                ["الوصول", "مدى الحياة"],
-              ].map(([k, v]) => (
-                <div key={k} className="flex items-baseline justify-between gap-4 py-3.5">
-                  <dt className="text-[13px] text-muted-foreground">{k}</dt>
-                  <dd className="text-[14px] font-semibold text-foreground">{v}</dd>
-                </div>
-              ))}
-            </dl>
-
-            <p className="mt-6 text-[12.5px] leading-relaxed text-muted-foreground">
-              باقة واحدة · دفعة واحدة · وصول مدى الحياة. السعر بيتثبّت لحظة اشتراكك — أي تحديث جاي
-              بيوصلك من غير ما تدفع جنيه زيادة.
-            </p>
-
-          </aside>
+          <dl className="animate-fade-rise-delay-2 mt-14 grid w-full max-w-3xl grid-cols-2 gap-x-6 gap-y-5 md:grid-cols-4">
+            {[
+              ["عدد المسارات", "12 مسار"],
+              ["مدة الخطة", "60 يوم"],
+              ["ساعات المحتوى", "38 ساعة"],
+              ["الوصول", "مدى الحياة"],
+            ].map(([k, v]) => (
+              <div key={k} className="text-center">
+                <dd className="text-[15px] font-semibold text-foreground">{v}</dd>
+                <dt className="mt-1 text-[12px] text-muted-foreground">{k}</dt>
+              </div>
+            ))}
+          </dl>
         </div>
 
-        <div className="flex justify-center border-t border-border pb-6 pt-5">
+        <div className="flex justify-center pb-8">
           <ChevronDown size={18} className="scroll-cue text-muted-foreground" aria-hidden="true" />
         </div>
       </div>
     </section>
   );
 }
+
 
 
 

@@ -143,32 +143,35 @@
   }
 }
 
-/* ===== ثيم «Serene» — ليل عميق + زجاج سائل + توهّج أبيض =====
- * خلفية #0a0608 · نص أبيض · أسطح زجاجية شفافة · أكسنت عاجي دافئ
+/* ===== ثيم «Velorah» — كحلي سينمائي + زجاج سائل =====
+ * خلفية hsl(201 100% 13%) · نص أبيض · أسطح زجاجية شفافة
  */
 :root {
   --radius: 18px;
-  --background: oklch(0.13 0.008 20);        /* #0a0608 */
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.17 0.008 20);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.17 0.008 20);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.13 0.008 20);
-  --secondary: oklch(0.24 0.01 25);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.24 0.01 25);
-  --muted-foreground: oklch(0.75 0.01 60);
-  --accent: oklch(0.93 0.03 85);             /* عاجي دافئ */
-  --accent-foreground: oklch(0.13 0.008 20);
+  --background: hsl(201 100% 13%);
+  --foreground: hsl(0 0% 100%);
+  --card: hsl(201 60% 16%);
+  --card-foreground: hsl(0 0% 100%);
+  --popover: hsl(201 60% 16%);
+  --popover-foreground: hsl(0 0% 100%);
+  --primary: hsl(0 0% 100%);
+  --primary-foreground: hsl(0 0% 4%);
+  --secondary: hsl(201 45% 20%);
+  --secondary-foreground: hsl(0 0% 100%);
+  --muted: hsl(201 45% 20%);
+  --muted-foreground: hsl(240 4% 66%);
+  --accent: hsl(0 0% 100%);
+  --accent-foreground: hsl(0 0% 4%);
   --destructive: oklch(0.6 0.19 25);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 14%);
-  --input: oklch(1 0 0 / 20%);
-  --ring: oklch(1 0 0 / 45%);
-  --hero-subtitle: oklch(0.82 0.01 80);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(0 0% 100% / 16%);
+  --input: hsl(0 0% 100% / 20%);
+  --ring: hsl(0 0% 100% / 45%);
+  --hero-subtitle: hsl(240 4% 76%);
+  --font-display-family: "Instrument Serif", serif;
+  --font-body-family: "Inter", sans-serif;
 }
+
 
 @theme {
   --font-sans: "Inter", "IBM Plex Sans Arabic", system-ui, sans-serif;
@@ -178,14 +181,14 @@
   --font-serif: "Instrument Serif", "Amiri", serif;
   --color-hero-subtitle: var(--hero-subtitle);
 
-  --color-paper: #0a0608;
-  --color-paper-light: #14100f;
+  --color-paper: #002a42;
+  --color-paper-light: #003954;
   --color-ink: #ffffff;
   --color-brick: #ffffff;
   --color-stone: #b9b2ab;
   --color-gold: #f2e6d2;
   --color-gold-soft: #d8c9b0;
-  --color-obsidian: #0a0608;
+  --color-obsidian: #002a42;
   --color-ivory: #ffffff;
 }
 
@@ -197,7 +200,7 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #0a0608;
+  background: #002a42;
   color: #ffffff;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
@@ -206,7 +209,7 @@ body {
 
 ::selection {
   background: #ffffff;
-  color: #0a0608;
+  color: #002a42;
 }
 
 a:focus-visible,
@@ -234,7 +237,7 @@ select:focus-visible,
   }
   *::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.22);
-    border: 3px solid #0a0608;
+    border: 3px solid #002a42;
   }
 }
 
@@ -268,16 +271,39 @@ img {
 
 /* ===== أسطح زجاجية سائلة ===== */
 @utility liquid-glass {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.01);
   background-blend-mode: luminosity;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.15) 20%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0.15) 80%,
+      rgba(255, 255, 255, 0.45) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
 }
+
 
 @utility glass-pill {
   background: rgba(255, 255, 255, 0.06);
@@ -310,7 +336,7 @@ img {
 }
 
 @utility mobile-menu-glass {
-  background: rgba(10, 6, 8, 0.95);
+  background: rgba(0, 42, 66, 0.95);
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -365,7 +391,7 @@ img {
 
 /* شريط مقلوب: فاتح على داكن */
 .band-ink {
-  background: linear-gradient(180deg, #0f0a10 0%, #0a0608 100%);
+  background: linear-gradient(180deg, #00344f 0%, #002a42 100%);
   color: #ffffff;
 }
 .band-ink h1,
@@ -430,3 +456,12 @@ img {
 }
 
 
+
+/* ===== ظهور سينمائي ===== */
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-rise { animation: fade-rise 0.8s ease-out both; }
+.animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.2s both; }
+.animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }

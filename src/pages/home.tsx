@@ -194,12 +194,12 @@ function Hero() {
             >
               <span className="h-px w-12 bg-accent" aria-hidden="true" />
               <span className="text-[11px] font-semibold tracking-[0.3em] text-accent">
-                من مجهود بيتنسى · لدخل بيتراكم
+                12 مسار دخل · مسار واحد يكفيك
               </span>
             </motion.div>
 
             <h1 className="font-display text-[clamp(44px,8.5vw,92px)] font-bold leading-[1.06] text-foreground">
-              {["الفلوس مش بتروح للأشطر.", "بتروح للي واقف صح."].map((line, i) => (
+              {["اتعلّم تشتغل من مصر", "وتتقبض بالدولار."].map((line, i) => (
 
 
                 <motion.span
@@ -216,12 +216,13 @@ function Hero() {
 
             <div className="mt-8 border-t border-foreground pt-6 md:columns-2 md:gap-10">
               <p className="text-[16px] leading-[1.9] text-secondary-foreground">
-                <span className="font-display text-[19px] font-bold text-accent">نفس الشغل، سعرين.</span>
-                {" "} في سوق بيشتري وقتك بالساعة، وسوق تاني بيشتري نتيجتك بالدولار. الفرق بينهم مش موهبة — الفرق قرار، وخريطة حد ماشي عليها قبلك.
+                <span className="font-display text-[19px] font-bold text-accent">من غير خبرة، ومن غير رأس مال.</span>
+                {" "} تختار مسار واحد من 12 مسار دخل حقيقي على النت، وتمشي على خطوات واضحة يوم بيوم لحد أول تحويل يوصلك.
               </p>
               <p className="mt-4 text-[16px] leading-[1.9] text-muted-foreground">
-                هنا مش بتتعلّم «مهنة». بتشوف 12 مسار دخل حقيقي على النت، تختار المسار اللي يناسب وقتك وشخصيتك، وتمشي خطوة بخطوة لحد أول دخل — وبعدها تحوّله لأصل بيشتغل وإنت نايم.
+                وبعدها الجزء المهم: تحوّل الشغل ده لأصل بيكبر لوحده — دخل بيستمر حتى في الشهور اللي مش بتشتغل فيها كتير.
               </p>
+
 
 
             </div>

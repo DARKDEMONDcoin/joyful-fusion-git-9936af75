@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createPageRoute, Link } from "@/lib/router";
 import { BackButton } from "@/components/BackButton";
 import { SiteNav } from "@/components/SiteNav";
 import { tracks } from "@/lib/tracks";
@@ -7,7 +7,7 @@ const title = "المسارات الـ12 | كورس الشغل أونلاين";
 const description =
   "12 مسار دخل مشروح بالتفصيل: بيزنس، تجارة إلكترونية، ذكاء اصطناعي، AI Agency، Micro-SaaS، علم نفس البيع، No-Code، والفريلانس — بخطة تنفيذ وأسعار سوق حقيقية.";
 
-export const Route = createFileRoute("/tracks/")({
+export const Route = createPageRoute({
   head: () => ({
     meta: [
       { title },

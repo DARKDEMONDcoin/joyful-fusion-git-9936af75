@@ -1,7 +1,6 @@
 import { company } from "@/lib/company";
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createPageRoute, Link, useNavigate } from "@/lib/router";
 import { useQuery } from "@tanstack/react-query";
-import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Check, Loader2 } from "lucide-react";
@@ -13,7 +12,7 @@ const title = "الباقة والدفع | كورس الشغل أونلاين";
 const description =
   "باقة كورس الشغل أونلاين: 12 مسار دخل، علم نفس البيع، خطة 60 يوم، وتحديثات مدى الحياة — دفعة واحدة 999 جنيه.";
 
-export const Route = createFileRoute("/_authenticated/checkout")({
+export const Route = createPageRoute({
   head: () => ({
     meta: [
       { name: "robots", content: "noindex, nofollow" },
@@ -56,8 +55,8 @@ const AFTER_PAY = [
 
 function CheckoutPage() {
   const navigate = useNavigate();
-  const fetchStudent = useServerFn(getMyStudent);
-  const startCheckout = useServerFn(createKashierCheckout);
+  const fetchStudent = getMyStudent;
+  const startCheckout = createKashierCheckout;
   const [paying, setPaying] = useState(false);
 
   const { data } = useQuery({ queryKey: ["my-student"], queryFn: () => fetchStudent() });

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createPageRoute } from "@/lib/router";
 import { LegalPage, LegalSection } from "@/components/LegalPage";
 import { company } from "@/lib/company";
 
@@ -6,7 +6,7 @@ const title = "اتصل بنا | ميغسي";
 const description =
   "بيانات التواصل الرسمية مع ميغسي لتطوير المنصات الرقمية والتجارة الإلكترونية: البريد، العنوان، مواعيد الدعم، وطريقة تقديم الشكاوى.";
 
-export const Route = createFileRoute("/contact")({
+export const Route = createPageRoute({
   head: () => ({
     meta: [
       { title },

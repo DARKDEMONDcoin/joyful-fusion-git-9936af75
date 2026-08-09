@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createPageRoute, Link } from "@/lib/router";
 import { SiteNav } from "@/components/SiteNav";
 import { faqs, SiteFooter } from "@/components/sections";
 
@@ -7,7 +7,7 @@ const title = "الأسئلة الشائعة | كورس الشغل أونلاي�
 const description =
   "كل الأسئلة قبل الاشتراك: محتاج رأس مال؟ موبايل بس؟ وقت قليل؟ إزاي أستلم فلوسي في مصر؟ وإيه اللي بيغطيه ضمان الـ 14 يوم.";
 
-export const Route = createFileRoute("/faq")({
+export const Route = createPageRoute({
   head: () => ({
     meta: [
       { title },

@@ -179,11 +179,15 @@ function Hero() {
       <video
         className="absolute inset-0 z-0 h-full w-full object-cover"
         src={HERO_VIDEO}
-        poster={heroPoster}
         autoPlay
         loop
         muted
         playsInline
+        aria-hidden="true"
+      />
+
+      <div
+        className="absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(0,26,42,0.55)_0%,rgba(0,26,42,0.35)_45%,rgba(0,26,42,0.75)_100%)]"
         aria-hidden="true"
       />
 

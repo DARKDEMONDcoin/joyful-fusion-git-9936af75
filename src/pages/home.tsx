@@ -15,7 +15,7 @@ import {
   faqs,
   FaqSection,
   FounderSection,
-  GuaranteeSection,
+  
   MoneyMathSection,
   PainSection,
   PricingSection,

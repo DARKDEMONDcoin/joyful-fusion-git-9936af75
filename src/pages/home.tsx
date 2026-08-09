@@ -428,7 +428,7 @@ function Proof() {
             { n: 12, l: "مسار دخل مختلف" },
             { n: 38, suffix: " ساعة", l: "محتوى عملي" },
             { n: 60, suffix: " يوم", l: "خطة يوم بيوم" },
-            { n: 14, suffix: " يوم", l: "ضمان استرداد" },
+            { n: 120, suffix: "+ قالب", l: "أدوات جاهزة للتنفيذ" },
           ].map((s) => (
             <div key={s.l}>
               <p className="text-[26px] font-semibold tracking-tight text-foreground">

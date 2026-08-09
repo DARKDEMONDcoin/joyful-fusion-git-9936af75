@@ -98,9 +98,6 @@ function AuthPage() {
     if (!authLoading && session) navigate({ to: redirectTo, replace: true });
   }, [authLoading, session, navigate, redirectTo]);
 
-  if (authLoading || session) {
-    return <div className="min-h-screen bg-background" aria-busy="true" />;
-  }
 
 
   async function onSubmit(e: React.FormEvent) {
@@ -248,6 +245,10 @@ function AuthPage() {
     appleAutoStarted.current = true;
     void oauth("apple");
   }, [authLoading, clerkReady, clerkSignIn, session]);
+
+  if (authLoading || session) {
+    return <div className="min-h-screen bg-background" aria-busy="true" />;
+  }
 
 
   return (

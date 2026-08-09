@@ -44,16 +44,37 @@ function OAuthCallback() {
     const finish = () => {
       if (done) return;
       done = true;
-      navigate({ to: "/welcome", replace: true });
+      const target = sessionStorage.getItem("auth:redirect") || "/welcome";
+      sessionStorage.removeItem("auth:redirect");
+      navigate({ to: target, replace: true });
     };
 
     const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
       if (session) finish();
     });
 
-    void supabase.auth.getSession().then(({ data }) => {
-      if (data.session) finish();
-    });
+    // PKCE flow: exchange the ?code= for a session, then fall back to getSession.
+    const code = params.get("code");
+    const bootstrap = code
+      ? supabase.auth.exchangeCodeForSession(code).then(({ data, error }) => {
+          if (error && !data?.session) throw error;
+          return data.session;
+        })
+      : supabase.auth.getSession().then(({ data }) => data.session);
+
+    void bootstrap
+      .then((session) => {
+        if (session) finish();
+      })
+      .catch((err: unknown) => {
+        if (!done) {
+          setError(
+            err instanceof Error && /apple/i.test(err.message)
+              ? "تسجيل الدخول بـ Apple فشل — جرّب تاني أو استخدم جوجل/الإيميل."
+              : "مقدرناش نكمّل تسجيل الدخول، جرّب تاني.",
+          );
+        }
+      });
 
     const timeout = window.setTimeout(() => {
       if (!done) setError("مقدرناش نكمّل تسجيل الدخول، جرّب تاني.");
@@ -64,6 +85,7 @@ function OAuthCallback() {
       window.clearTimeout(timeout);
     };
   }, [navigate]);
+
 
   return (
     <div

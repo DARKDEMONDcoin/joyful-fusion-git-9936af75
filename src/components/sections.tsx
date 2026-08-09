@@ -851,11 +851,15 @@ export function StickyCta() {
     <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/90 px-4 py-3 backdrop-blur-xl lg:hidden">
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0">
-          <p dir="ltr" className="text-[15px] font-semibold text-foreground">
+          <p dir="ltr" className="flex items-baseline gap-2 text-[15px] font-semibold text-foreground">
             999 <span className="text-xs font-normal text-muted-foreground">جنيه</span>
+            <span className="text-xs font-normal text-muted-foreground/70 line-through">4,500</span>
           </p>
-          <p className="truncate text-[11px] text-muted-foreground">ضمان 14 يوم — دفعة واحدة</p>
+          <p className="truncate text-[11px] text-muted-foreground">
+            ضمان 14 يوم · دفعة واحدة · وصول مدى الحياة
+          </p>
         </div>
+
         <Link
           to="/checkout"
           className="shrink-0 bg-primary px-6 py-3 text-sm font-medium text-primary-foreground active:scale-95"

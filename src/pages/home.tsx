@@ -273,7 +273,7 @@ function Hero() {
                 ["عدد المسارات", "12 مسار"],
                 ["مدة الخطة", "60 يوم"],
                 ["ساعات المحتوى", "38 ساعة"],
-                ["الضمان", "14 يوم استرداد"],
+                ["الوصول", "مدى الحياة"],
               ].map(([k, v]) => (
                 <div key={k} className="flex items-baseline justify-between gap-4 py-3.5">
                   <dt className="text-[13px] text-muted-foreground">{k}</dt>

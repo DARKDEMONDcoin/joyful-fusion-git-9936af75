@@ -58,11 +58,19 @@ export async function updateMyStudent(input: {
  * the hosted checkout URL to redirect the customer to.
  */
 export async function createKashierCheckout(): Promise<{ url: string; orderId: string }> {
-  const { data, error } = await supabase.functions.invoke<{ url: string; orderId: string }>(
-    "kashier-checkout",
-    { body: { origin: window.location.origin } },
-  );
+  const { data, error } = await supabase.functions.invoke<{
+    url?: string;
+    checkoutUrl?: string;
+    payment_url?: string;
+    orderId?: string;
+    order_id?: string;
+  }>("kashier-checkout", {
+    body: { sku: "course_lifetime", origin: window.location.origin },
+  });
   if (error) throw new Error(error.message);
-  if (!data?.url) throw new Error("تعذّر بدء عملية الدفع");
-  return data;
+
+  const url = data?.url ?? data?.checkoutUrl ?? data?.payment_url;
+  if (!url) throw new Error("تعذّر بدء عملية الدفع");
+  return { url, orderId: data?.orderId ?? data?.order_id ?? "" };
 }
+

@@ -71,8 +71,6 @@ export const createKashierCheckout = createServerFn({ method: "POST" })
     });
     if (inserted.error) throw new Error(inserted.error.message);
 
-    // Prefill the Kashier page with what we already know: fewer fields to type
-    // on a phone means fewer drop-offs at the payment step.
     const student = await context.supabase
       .from("course_students")
       .select("full_name, phone")
@@ -91,9 +89,6 @@ export const createKashierCheckout = createServerFn({ method: "POST" })
       merchantRedirect: `${origin}/dashboard?paid=1`,
       failureRedirect: "true",
       serverWebhook: `${origin}/api/public/kashier-webhook`,
-      // No allowedMethods filter => every method enabled on the merchant account
-      // shows up: cards (Visa/Mastercard/Meeza), mobile wallets, bank
-      // installments, valU / Aman / Souhoola, and Apple Pay on live.
       display: "ar",
       redirectMethod: "get",
       interactionSource: "Ecommerce",

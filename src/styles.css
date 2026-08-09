@@ -143,33 +143,32 @@
   }
 }
 
-/* ===== ثيم «الأوبسيديان والذهب» — لغة الفخامة العالمية =====
- * أسود أوبسيديان دافئ + عاجي + ذهب عتيق منخفض التشبّع.
- * أبحاث حالة العلامات الفاخرة: تشبّع منخفض + أسود عميق + ذهب مطفي
- * = أعلى إدراك للثراء والاستعداد للدفع.
+/* ===== ثيم «Drift» — كريمي دافئ + بنّي عميق =====
+ * خلفية كريمي #F6E4CF · نص بنّي داكن #321C04 · بطاقات #FFF9F2
+ * أكسنت مهدّئ #D9C4AA — لغة بصرية هادئة عالية القراءة.
  */
 :root {
-  --radius: 0px;
-  --background: oklch(0.155 0.005 70); /* #0B0A09 أوبسيديان */
-  --foreground: oklch(0.935 0.016 88); /* #EFE9DC عاجي */
-  --card: oklch(0.195 0.006 70); /* #131110 */
-  --card-foreground: oklch(0.935 0.016 88);
-  --popover: oklch(0.195 0.006 70);
-  --popover-foreground: oklch(0.935 0.016 88);
-  --primary: oklch(0.745 0.085 86); /* ذهب عتيق #C8A85C */
-  --primary-foreground: oklch(0.16 0.005 70);
-  --secondary: oklch(0.245 0.008 72); /* #1B1815 */
-  --secondary-foreground: oklch(0.935 0.016 88);
-  --muted: oklch(0.245 0.008 72);
-  --muted-foreground: oklch(0.735 0.021 86); /* #B5AC98 — تباين AA على الأسود */
-  --accent: oklch(0.745 0.085 86); /* ذهب */
-  --accent-foreground: oklch(0.16 0.005 70);
-  --destructive: oklch(0.58 0.15 30);
-  --destructive-foreground: oklch(0.96 0.01 88);
-  --border: oklch(0.935 0.016 88 / 14%);
-  --input: oklch(0.935 0.016 88 / 22%);
-  --ring: oklch(0.745 0.085 86 / 55%);
-  --hero-subtitle: oklch(0.8 0.02 86);
+  --radius: 14px;
+  --background: oklch(0.917 0.036 74);      /* #F6E4CF */
+  --foreground: oklch(0.259 0.045 58);      /* #321C04 */
+  --card: oklch(0.978 0.014 80);            /* #FFF9F2 */
+  --card-foreground: oklch(0.259 0.045 58);
+  --popover: oklch(0.978 0.014 80);
+  --popover-foreground: oklch(0.259 0.045 58);
+  --primary: oklch(0.259 0.045 58);
+  --primary-foreground: oklch(0.978 0.014 80);
+  --secondary: oklch(0.855 0.038 76);       /* #E7D3B9 */
+  --secondary-foreground: oklch(0.259 0.045 58);
+  --muted: oklch(0.855 0.038 76);
+  --muted-foreground: oklch(0.455 0.05 60); /* بنّي متوسط */
+  --accent: oklch(0.259 0.045 58);
+  --accent-foreground: oklch(0.978 0.014 80);
+  --destructive: oklch(0.52 0.16 30);
+  --destructive-foreground: oklch(0.978 0.014 80);
+  --border: oklch(0.259 0.045 58 / 16%);
+  --input: oklch(0.259 0.045 58 / 26%);
+  --ring: oklch(0.259 0.045 58 / 45%);
+  --hero-subtitle: oklch(0.42 0.05 60);
 }
 
 @theme {
@@ -181,15 +180,15 @@
   --color-hero-subtitle: var(--hero-subtitle);
 
   /* أسماء متوافقة مع الكود القديم لكن بقيم الثراء الجديدة */
-  --color-paper: #0b0a09;
-  --color-paper-light: #131110;
-  --color-ink: #efe9dc;
-  --color-brick: #c8a85c;
-  --color-stone: #b5ac98;
-  --color-gold: #c8a85c;
-  --color-gold-soft: #e2cf9a;
-  --color-obsidian: #0b0a09;
-  --color-ivory: #efe9dc;
+  --color-paper: #f6e4cf;
+  --color-paper-light: #fff9f2;
+  --color-ink: #321c04;
+  --color-brick: #321c04;
+  --color-stone: #8a6a45;
+  --color-gold: #321c04;
+  --color-gold-soft: #1f1003;
+  --color-obsidian: #321c04;
+  --color-ivory: #fff9f2;
 }
 
 html {
@@ -200,16 +199,16 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #0b0a09;
-  color: #efe9dc;
+  background: #f6e4cf;
+  color: #321c04;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: #c8a85c;
-  color: #0b0a09;
+  background: #321c04;
+  color: #fff9f2;
 }
 
 a:focus-visible,
@@ -218,23 +217,23 @@ input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid #c8a85c;
+  outline: 2px solid #321c04;
   outline-offset: 3px;
-  border-radius: 0;
+  border-radius: 8px;
 }
 
 @media (pointer: fine) {
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(200, 168, 92, 0.35) transparent;
+    scrollbar-color: rgba(50, 28, 4, 0.3) transparent;
   }
   *::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
   *::-webkit-scrollbar-thumb {
-    background: rgba(200, 168, 92, 0.3);
-    border: 3px solid #0b0a09;
+    background: rgba(50, 28, 4, 0.28);
+    border: 3px solid #f6e4cf;
   }
 }
 
@@ -264,19 +263,22 @@ img {
 
 /* ===== أسطح مطبوعة: خط رفيع بدل الزجاج والظلال ===== */
 @utility liquid-glass {
-  background: #131110;
-  border: 1px solid rgba(239, 233, 220, 0.14);
+  background: #fff9f2;
+  border: 1px solid rgba(50, 28, 4, 0.14);
+  border-radius: 20px;
   overflow: hidden;
 }
 
 @utility glass-pill {
-  background: transparent;
-  border: 1px solid rgba(239, 233, 220, 0.22);
+  background: rgba(255, 249, 242, 0.7);
+  border: 1px solid rgba(50, 28, 4, 0.18);
+  border-radius: 9999px;
 }
 
 @utility glass-card {
-  background: #131110;
-  border: 1px solid rgba(239, 233, 220, 0.14);
+  background: #fff9f2;
+  border: 1px solid rgba(50, 28, 4, 0.14);
+  border-radius: 20px;
 }
 
 @utility hover-lift {
@@ -285,14 +287,15 @@ img {
     border-color 0.25s ease,
     color 0.25s ease;
   &:hover {
-    background-color: #171412;
-    border-color: rgba(200, 168, 92, 0.5);
+    background-color: #fffdfa;
+    border-color: rgba(50, 28, 4, 0.4);
   }
 }
 
 @utility mobile-menu-glass {
-  background: #0b0a09;
-  border: 1px solid rgba(200, 168, 92, 0.3);
+  background: #fff9f2;
+  border: 1px solid rgba(50, 28, 4, 0.22);
+  border-radius: 20px;
 }
 
 /* رقم إديتوريال ضخم */
@@ -300,25 +303,25 @@ img {
   font-family: "Amiri", serif;
   font-size: clamp(38px, 6vw, 64px);
   line-height: 0.85;
-  color: #c8a85c;
+  color: #321c04;
 }
 
 /* عنوان بخط تحت ذهبي */
 @utility rule-under {
-  border-bottom: 2px solid #c8a85c;
+  border-bottom: 2px solid #d9c4aa;
 }
 
 /* معالجة الصور التحريرية: دوتون ذهبي موحّد + عودة اللون الطبيعي عند اللمس/الهوفر */
 @utility editorial-img {
-  filter: grayscale(1) contrast(1.08) brightness(0.94) sepia(0.22)
-    saturate(1.25) hue-rotate(-8deg);
+  filter: grayscale(0.55) contrast(1.03) brightness(1.02) sepia(0.28)
+    saturate(1.05);
   transition:
     filter 700ms cubic-bezier(0.2, 0.7, 0.2, 1),
     transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
   will-change: filter;
 
   &:hover {
-    filter: grayscale(0.15) contrast(1.03) brightness(1) sepia(0.04)
+    filter: grayscale(0) contrast(1.02) brightness(1.02) sepia(0.04)
       saturate(1.05);
   }
 }
@@ -337,15 +340,15 @@ img {
 
 /* شريط حبر مقلوب */
 .band-ink {
-  background: #060505;
-  color: #efe9dc;
+  background: #321c04;
+  color: #fff9f2;
 }
 .band-ink h1,
 .band-ink h2,
 .band-ink h3,
 .band-ink strong,
 .band-ink figcaption {
-  color: #efe9dc !important;
+  color: #fff9f2 !important;
 }
 .band-ink p,
 .band-ink li,
@@ -353,21 +356,21 @@ img {
 .band-ink dd,
 .band-ink blockquote,
 .band-ink span:not(.band-chip) {
-  color: rgba(239, 233, 220, 0.72) !important;
+  color: rgba(255, 249, 242, 0.75) !important;
 }
 .band-ink .glass-card,
 .band-ink .liquid-glass {
-  background: rgba(244, 240, 232, 0.06) !important;
-  border-color: rgba(244, 240, 232, 0.24) !important;
+  background: rgba(255, 249, 242, 0.07) !important;
+  border-color: rgba(255, 249, 242, 0.24) !important;
 }
 .band-ink .border-border,
 .band-ink hr,
 .band-ink .divide-border > * {
-  border-color: rgba(244, 240, 232, 0.24) !important;
+  border-color: rgba(255, 249, 242, 0.24) !important;
 }
 /* الذهب يظل ذهبًا داخل الأشرطة الداكنة */
 .band-ink .text-accent {
-  color: #e2cf9a !important;
+  color: #d9c4aa !important;
 }
 
 /* ===== تيكر أفقي ===== */
@@ -390,7 +393,7 @@ img {
 
 /* صف مسار في جدول المسارات */
 .track-row { transition: background-color .25s ease; }
-.track-row:hover { background-color: rgba(200, 168, 92, 0.07); }
+.track-row:hover { background-color: rgba(50, 28, 4, 0.06); }
 
 /* حبيبات ورق خفيفة */
 .paper-grain::before {
@@ -399,7 +402,7 @@ img {
   inset: 0;
   pointer-events: none;
   z-index: 60;
-  opacity: 0.05;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 

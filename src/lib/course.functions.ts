@@ -1,6 +1,4 @@
-import { createServerFn } from "@tanstack/react-start";
-import { getRequest } from "@tanstack/react-start/server";
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { supabase } from "@/integrations/supabase/client";
 
 export const COURSE_PRICE_EGP = 999;
 
@@ -12,96 +10,59 @@ export type StudentRecord = {
   has_access: boolean;
 };
 
-export const getMyStudent = createServerFn({ method: "GET" })
-  .middleware([requireSupabaseAuth])
-  .handler(async ({ context }): Promise<StudentRecord> => {
-    const { supabase, userId } = context;
-    const existing = await supabase
-      .from("course_students")
-      .select("full_name, phone, telegram_username, access_code, has_access")
-      .eq("user_id", userId)
-      .maybeSingle();
-    if (existing.error) throw new Error(existing.error.message);
-    if (existing.data) return existing.data as StudentRecord;
+const STUDENT_COLUMNS = "full_name, phone, telegram_username, access_code, has_access";
 
-    const created = await supabase
-      .from("course_students")
-      .insert({ user_id: userId })
-      .select("full_name, phone, telegram_username, access_code, has_access")
-      .single();
-    if (created.error) throw new Error(created.error.message);
-    return created.data as StudentRecord;
-  });
+async function requireUserId() {
+  const { data, error } = await supabase.auth.getUser();
+  if (error || !data.user) throw new Error("غير مسجّل الدخول");
+  return data.user.id;
+}
 
-export const updateMyStudent = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
-  .inputValidator((input: { full_name?: string; phone?: string; telegram_username?: string }) => ({
-    full_name: input.full_name?.trim().slice(0, 80) ?? null,
-    phone: input.phone?.trim().slice(0, 20) ?? null,
-    telegram_username: input.telegram_username?.trim().slice(0, 40) ?? null,
-  }))
-  .handler(async ({ data, context }) => {
-    const { error } = await context.supabase
-      .from("course_students")
-      .update(data)
-      .eq("user_id", context.userId);
-    if (error) throw new Error(error.message);
-    return { ok: true };
-  });
+export async function getMyStudent(): Promise<StudentRecord> {
+  const userId = await requireUserId();
 
-export const createKashierCheckout = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
-  .handler(async ({ context }) => {
-    const { kashierEnv, kashierOrderHash } = await import("@/lib/kashier.server");
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { merchantId, apiKey, mode } = kashierEnv();
+  const existing = await supabase
+    .from("course_students")
+    .select(STUDENT_COLUMNS)
+    .eq("user_id", userId)
+    .maybeSingle();
+  if (existing.error) throw new Error(existing.error.message);
+  if (existing.data) return existing.data as StudentRecord;
 
-    const request = getRequest();
-    const origin = request ? new URL(request.url).origin : "";
-    const orderId = `COURSE-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-    const amount = COURSE_PRICE_EGP.toFixed(2);
-    const currency = "EGP";
+  const created = await supabase
+    .from("course_students")
+    .insert({ user_id: userId })
+    .select(STUDENT_COLUMNS)
+    .single();
+  if (created.error) throw new Error(created.error.message);
+  return created.data as StudentRecord;
+}
 
-    const inserted = await supabaseAdmin.from("course_orders").insert({
-      user_id: context.userId,
-      order_id: orderId,
-      amount: COURSE_PRICE_EGP,
-      currency,
-      status: "pending",
-    });
-    if (inserted.error) throw new Error(inserted.error.message);
+export async function updateMyStudent(input: {
+  data: { full_name?: string; phone?: string; telegram_username?: string };
+}) {
+  const userId = await requireUserId();
+  const payload = {
+    full_name: input.data.full_name?.trim().slice(0, 80) ?? null,
+    phone: input.data.phone?.trim().slice(0, 20) ?? null,
+    telegram_username: input.data.telegram_username?.trim().slice(0, 40) ?? null,
+  };
 
-    const student = await context.supabase
-      .from("course_students")
-      .select("full_name, phone")
-      .eq("user_id", context.userId)
-      .maybeSingle();
-    const claims = context.claims as { email?: string } | undefined;
+  const { error } = await supabase.from("course_students").update(payload).eq("user_id", userId);
+  if (error) throw new Error(error.message);
+  return { ok: true };
+}
 
-    const hash = kashierOrderHash({ merchantId, apiKey, orderId, amount, currency });
-    const params = new URLSearchParams({
-      merchantId,
-      orderId,
-      amount,
-      currency,
-      hash,
-      mode,
-      merchantRedirect: `${origin}/dashboard?paid=1`,
-      failureRedirect: "true",
-      serverWebhook: `${origin}/api/public/kashier-webhook`,
-      display: "ar",
-      redirectMethod: "get",
-      interactionSource: "Ecommerce",
-      description: "كورس الشغل أونلاين — وصول كامل مدى الحياة",
-      customerReference: context.userId,
-    });
-
-    const name = student.data?.full_name?.trim();
-    if (name) params.set("customerName", name);
-    const phone = student.data?.phone?.trim();
-    if (phone) params.set("customerPhone", phone);
-    if (claims?.email) params.set("customerEmail", claims.email);
-
-    return { url: `https://checkout.kashier.io/?${params.toString()}`, orderId };
-  });
-
+/**
+ * Creates the Kashier order server-side (Supabase Edge Function) and returns
+ * the hosted checkout URL to redirect the customer to.
+ */
+export async function createKashierCheckout(): Promise<{ url: string; orderId: string }> {
+  const { data, error } = await supabase.functions.invoke<{ url: string; orderId: string }>(
+    "kashier-checkout",
+    { body: { origin: window.location.origin } },
+  );
+  if (error) throw new Error(error.message);
+  if (!data?.url) throw new Error("تعذّر بدء عملية الدفع");
+  return data;
+}

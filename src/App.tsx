@@ -9,7 +9,7 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import { supabase } from "@/integrations/supabase/client";
+import { AuthProvider, useAuth } from "@/hooks/use-auth";
 import { RouteNotFound } from "@/lib/router";
 import { Route as HomeRoute } from "@/pages/home";
 import { Route as AboutRoute } from "@/pages/about";
@@ -26,9 +26,9 @@ import { Route as TrackDetailRoute } from "@/pages/track-detail";
 import { Route as CheckoutRoute } from "@/pages/_authenticated/checkout";
 import { Route as DashboardRoute } from "@/pages/_authenticated/dashboard";
 import { Route as WelcomeRoute } from "@/pages/_authenticated/welcome";
-import { useState } from "react";
 
 const queryClient = new QueryClient();
+
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();

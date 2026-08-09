@@ -1,8 +1,11 @@
 import { createPageRoute, Link, useNavigate } from "@/lib/router";
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Apple, Loader2, Lock, Mail } from "lucide-react";
+import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
+
 
 const title = "تسجيل الدخول | كورس الشغل أونلاين";
 const description =

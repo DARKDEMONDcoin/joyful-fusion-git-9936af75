@@ -213,17 +213,14 @@ function Hero() {
             </h1>
 
             <div className="mt-8 border-t border-foreground pt-6 md:columns-2 md:gap-10">
-              <p className="text-[16px] leading-[1.95] text-secondary-foreground">
+              <p className="text-[16px] leading-[1.9] text-secondary-foreground">
                 <span className="font-display text-[19px] font-bold text-accent">فرق العملة</span>
-                {" "} بيشتغل لصالحك لأول مرة: نفس الشغل اللي بيتدفع فيه بالجنيه هنا، بيتدفع فيه
-                بالدولار بره. والسقف مش راتب — السقف إنك تبني نظام دخل وأصل رقمي ليه قيمة تقدر
-                تبيعه بعدين.
+                {" "} بيشتغل لصالحك: نفس الشغل اللي بيتدفع فيه بالجنيه هنا، بيتدفع فيه بالدولار بره.
               </p>
-              <p className="mt-4 text-[16px] leading-[1.95] text-muted-foreground">
-                مش كورس فريلانس. جواه كل طرق الشغل أونلاين: خدمات ومهارات، تجارة إلكترونية، ذكاء
-                اصطناعي وأتمتة، منتجات رقمية واشتراكات، محتوى وعمولات، وبيع عالي القيمة — تختار
-                مسار واحد وتمشي على خطة يوم بيوم لحد أول دولار. النتيجة على قد شغلك.
+              <p className="mt-4 text-[16px] leading-[1.9] text-muted-foreground">
+                مش كورس فريلانس: 12 مسار دخل — تختار واحد وتمشي على خطة يوم بيوم لحد أول دولار.
               </p>
+
             </div>
 
 

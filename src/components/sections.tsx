@@ -1289,7 +1289,7 @@ export function MoneyMathSection() {
           <p className="max-w-2xl text-[14.5px] leading-[1.9] text-secondary-foreground">
             <span className="font-semibold text-foreground">إخلاء مسؤولية صريح:</span> دي أمثلة
             لأسعار سوق حقيقية، مش ضمان دخل. النتيجة بتتوقف على مجهودك ووقتك والسوق. اللي بنضمنه حاجة
-            واحدة: الترتيب والمحتوى، ولو مش عاجبك خلال {company.refundDays} يوم فلوسك ترجع كاملة.
+            واحدة: الترتيب والمحتوى والتحديثات مدى الحياة.
           </p>
           <PrimaryButton to="/auth">ابدأ الحسبة من النهارده</PrimaryButton>
         </div>

@@ -1255,6 +1255,32 @@ export function MoneyMathSection() {
           ))}
         </div>
 
+        <div className="mt-14">
+          <p className="text-[11px] font-semibold tracking-[0.28em] text-accent">سلّم الأصول</p>
+          <h3 className="mt-4 max-w-[720px] font-display text-[clamp(22px,3vw,34px)] font-bold leading-[1.2] text-foreground">
+            الوظيفة سقفها راتب. اللي هنا سقفه إنك تبني حاجة تتباع.
+          </h3>
+          <div className="mt-8 grid border-y border-border md:grid-cols-4">
+            {ladder.map(([stage, t, d], i) => (
+              <article
+                key={t}
+                className={`flex flex-col gap-3 border-border p-6 ${
+                  i < ladder.length - 1 ? "border-b md:border-b-0 md:border-l" : ""
+                }`}
+              >
+                <span className="text-[12px] tracking-[0.16em] text-muted-foreground">{stage}</span>
+                <h4 className="text-[17px] font-semibold text-foreground">{t}</h4>
+                <p className="text-[14px] leading-[1.9] text-muted-foreground">{d}</p>
+              </article>
+            ))}
+          </div>
+          <p className="mt-4 text-[12.5px] text-muted-foreground">
+            محدش يقدر يوعدك بمرحلة معيّنة ولا بتوقيت. اللي بنقدّمه إنك تعرف السلّم وتمشي عليه بترتيب
+            بدل ما تلف في دايرة.
+          </p>
+        </div>
+
+
         <div className="mt-10 flex flex-col items-start justify-between gap-5 border border-border bg-secondary px-7 py-6 sm:flex-row sm:items-center">
           <p className="max-w-2xl text-[14.5px] leading-[1.9] text-secondary-foreground">
             <span className="font-semibold text-foreground">إخلاء مسؤولية صريح:</span> دي أمثلة

@@ -83,7 +83,7 @@ function AuthPage() {
         setProviders({
           // أبل يعمل عبر Supabase مباشرة أو عبر Clerk (Third-Party Auth)
           apple: Boolean(json.external.apple) || clerkEnabled,
-          google: Boolean(json.external.google),
+          google: Boolean(json.external.google) || clerkEnabled,
         });
       })
       .catch(() => undefined);

@@ -39,7 +39,7 @@ type Msg = { role: "user" | "assistant"; text: string };
 const seed: Msg[] = [
   {
     role: "assistant",
-    text: "أهلًا بيك في كورس الشغل أونلاين. هوصّلك خطوة بخطوة لأول دخل بالدولار. عايز تبدأ بأنهي مسار؟",
+    text: "أهلًا بيك. هنبني معاك أول أصل رقمي بيجيب دولار خطوة بخطوة. عايز تبدأ بأنهي محرك دخل؟",
   },
   { role: "user", text: "عايز أبدأ مسار الخدمات وأجيب أول عميل بالدولار." },
   {
@@ -70,7 +70,7 @@ function ChatPanel({ animateMessagesIn = false }: { animateMessagesIn?: boolean 
           <Sparkle size={14} className="text-white" />
         </span>
         <span className="leading-tight">
-          <span className="block text-sm font-medium text-white">كورس الشغل أونلاين</span>
+          <span className="block text-sm font-medium text-white">إمبراطورية الدخل بالدولار</span>
           <span className="block text-[11px] text-white/40">اتعلّم تكسب بالدولار من مصر</span>
         </span>
       </div>

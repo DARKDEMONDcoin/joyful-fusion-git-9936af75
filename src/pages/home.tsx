@@ -28,9 +28,9 @@ import {
 
 
 
-const title = "اشتغل أونلاين واكسب بالدولار من مصر | 12 مسار دخل";
+const title = "ابنِ إمبراطورية دخل بالدولار من مصر | 12 محرك دخل";
 const description =
-  "مش كورس فريلانس: 12 مسار دخل أونلاين — تجارة إلكترونية، ذكاء اصطناعي وأتمتة، منتجات رقمية واشتراكات، محتوى وعمولات — بخطة يوم بيوم لحد أول دولار. 999 جنيه.";
+  "مش سبوبة ولا فريلانس بالساعة: نظام كامل لبناء أصول رقمية بتملكها — تجارة إلكترونية، ذكاء اصطناعي وأتمتة، منتجات واشتراكات، ووكالات — بخطة يوم بيوم من أول دولار لبيزنس بيكبر. 999 جنيه.";
 
 
 const SITE = "https://egyptian-empire-quest.lovable.app";
@@ -59,7 +59,7 @@ export const Route = createPageRoute({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Course",
-          name: "كورس الشغل أونلاين والكسب بالدولار",
+          name: "إمبراطورية الدخل بالدولار — 12 محرك دخل من مصر",
           description,
           inLanguage: "ar",
           url: `${SITE}/`,
@@ -203,14 +203,16 @@ function Hero() {
           <h1
             className="animate-fade-rise max-w-5xl font-display text-[clamp(38px,7vw,80px)] font-normal leading-[1.25] tracking-[-0.02em] text-foreground [text-wrap:balance]"
           >
-            اتعلّم تشتغل من مصر{" "}
-            <em className="not-italic text-muted-foreground">وتتقبض بالدولار.</em>
+            من مصر… تبني إمبراطورية دخل{" "}
+            <em className="not-italic text-muted-foreground">بالدولار.</em>
           </h1>
 
           <p className="animate-fade-rise-delay mt-8 max-w-2xl text-[16px] leading-relaxed text-muted-foreground sm:text-[18px]">
-            من غير خبرة ومن غير رأس مال. تختار مسار واحد من 12 مسار دخل حقيقي على النت، وتمشي على
-            خطوات واضحة يوم بيوم لحد أول تحويل يوصلك — وبعدها تحوّله لأصل بيكبر لوحده.
+            مش سبوبة ولا شغل فريلانس بالساعة. ده نظام كامل لبناء أصول رقمية بتملكها: 12 محرك دخل —
+            تجارة إلكترونية، ذكاء اصطناعي وأتمتة، منتجات واشتراكات، ووكالات — بخطة يوم بيوم من أول
+            دولار يوصلك لحد بيزنس بيكبر من غيرك.
           </p>
+
 
           <div className="animate-fade-rise-delay-2 mt-12 flex flex-col items-center gap-4 sm:flex-row">
             <Link

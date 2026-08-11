@@ -191,26 +191,11 @@ function AuthPage() {
     }
 
     setLoading(true);
-    try {
-      // جوجل وأبل بيشتغلوا عبر Clerk (مفعّل كـ Third-Party Auth على Supabase)
-      if (clerkEnabled) {
-        if (!clerkReady || !clerkSignIn) {
-          setLoading(false);
-          toast.error("لحظة، جاري تجهيز تسجيل الدخول…");
-          return;
-        }
-        sessionStorage.setItem("auth:redirect", redirectTo);
-        sessionStorage.setItem("auth:provider", "clerk");
-        await clerkSignIn.authenticateWithRedirect({
-          strategy: provider === "apple" ? "oauth_apple" : "oauth_google",
-          redirectUrl: window.location.origin + "/oauth-callback",
-          redirectUrlComplete: window.location.origin + "/oauth-callback",
-        });
-        return;
-      }
+    // remember where to land after the provider redirect
+    sessionStorage.setItem("auth:redirect", redirectTo);
 
-      // remember where to land after the provider redirect
-      sessionStorage.setItem("auth:redirect", redirectTo);
+    const supabaseOAuth = async () => {
+      sessionStorage.removeItem("auth:provider");
       const { error } = await supabase.auth.signInWithOAuth({
         provider,
         options: {
@@ -222,11 +207,36 @@ function AuthPage() {
         },
       });
       if (error) throw error;
+    };
+
+    try {
+      // جوجل وأبل بيشتغلوا عبر Clerk (مفعّل كـ Third-Party Auth على Supabase)
+      if (clerkEnabled && clerkReady && clerkSignIn) {
+        sessionStorage.setItem("auth:provider", "clerk");
+        try {
+          await clerkSignIn.authenticateWithRedirect({
+            strategy: provider === "apple" ? "oauth_apple" : "oauth_google",
+            redirectUrl: window.location.origin + "/oauth-callback",
+            redirectUrlComplete: window.location.origin + "/oauth-callback",
+          });
+          return;
+        } catch (clerkErr) {
+          // المزوّد مش مفعّل على Clerk → نرجع لمسار Supabase العادي
+          const raw = JSON.stringify(clerkErr ?? "");
+          if (!/strategy|not.*enabled|invalid/i.test(raw)) throw clerkErr;
+          await supabaseOAuth();
+          return;
+        }
+      }
+
+      await supabaseOAuth();
     } catch (err) {
       setLoading(false);
       toast.error(arabicAuthError(err));
     }
   }
+
+
 
   useEffect(() => {
     const provider = new URLSearchParams(window.location.search).get("provider");

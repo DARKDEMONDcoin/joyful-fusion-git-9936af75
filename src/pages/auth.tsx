@@ -176,14 +176,14 @@ function AuthPage() {
   async function oauth(provider: "google" | "apple") {
     if (loading) return;
 
-    // Apple blocks its sign-in page inside embedded previews. Open our auth
-    // page in a real browser tab first, then start Clerk there automatically.
-    if (provider === "apple" && window.self !== window.top) {
+    // Apple/Google block their sign-in pages inside embedded previews.
+    // Open our auth page in a real browser tab, then start Clerk there.
+    if (clerkEnabled && window.self !== window.top) {
       const standaloneUrl = new URL("/auth", window.location.origin);
-      standaloneUrl.searchParams.set("provider", "apple");
+      standaloneUrl.searchParams.set("provider", provider);
       const opened = window.open(standaloneUrl.toString(), "_blank");
       if (!opened) {
-        toast.error("اسمح بفتح نافذة جديدة عشان نكمّل تسجيل الدخول بأبل.");
+        toast.error("اسمح بفتح نافذة جديدة عشان نكمّل تسجيل الدخول.");
       } else {
         opened.opener = null;
       }
@@ -192,17 +192,17 @@ function AuthPage() {
 
     setLoading(true);
     try {
-      // أبل مش مفعّل على Supabase Auth → نستخدم Clerk المفعّل كـ Third-Party Auth
-      if (provider === "apple" && clerkEnabled) {
+      // جوجل وأبل بيشتغلوا عبر Clerk (مفعّل كـ Third-Party Auth على Supabase)
+      if (clerkEnabled) {
         if (!clerkReady || !clerkSignIn) {
           setLoading(false);
-          toast.error("لحظة، جاري تجهيز تسجيل الدخول بأبل…");
+          toast.error("لحظة، جاري تجهيز تسجيل الدخول…");
           return;
         }
         sessionStorage.setItem("auth:redirect", redirectTo);
         sessionStorage.setItem("auth:provider", "clerk");
         await clerkSignIn.authenticateWithRedirect({
-          strategy: "oauth_apple",
+          strategy: provider === "apple" ? "oauth_apple" : "oauth_google",
           redirectUrl: window.location.origin + "/oauth-callback",
           redirectUrlComplete: window.location.origin + "/oauth-callback",
         });
@@ -231,7 +231,7 @@ function AuthPage() {
   useEffect(() => {
     const provider = new URLSearchParams(window.location.search).get("provider");
     if (
-      provider !== "apple" ||
+      (provider !== "apple" && provider !== "google") ||
       window.self !== window.top ||
       appleAutoStarted.current ||
       !clerkReady ||
@@ -243,8 +243,9 @@ function AuthPage() {
     }
 
     appleAutoStarted.current = true;
-    void oauth("apple");
+    void oauth(provider);
   }, [authLoading, clerkReady, clerkSignIn, session]);
+
 
   if (authLoading || session) {
     return <div className="min-h-screen bg-background" aria-busy="true" />;

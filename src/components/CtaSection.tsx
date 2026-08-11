@@ -196,6 +196,13 @@ function DashboardMock() {
   );
 }
 
+const CTA_POINTS = [
+  "12 محرك دخل — تختار واحد وتمشي عليه خطوة بخطوة",
+  "خطة 60 يوم بمهام يومية واضحة مش نظريات",
+  "قوالب وسكربتات جاهزة تنسخها من أول يوم",
+  "دفعة واحدة · وصول وتحديثات مدى الحياة",
+];
+
 export function CtaSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const isMobile = useIsMobile();
@@ -203,11 +210,15 @@ export function CtaSection() {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const dashboardY = useTransform(scrollYProgress, [0, 1], ["120px", "-120px"]);
+  const dashboardY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    isMobile ? ["40px", "-20px"] : ["70px", "-70px"],
+  );
   const grassY = useTransform(
     scrollYProgress,
     [0, 1],
-    isMobile ? ["80px", "-40px"] : ["200px", "-200px"],
+    isMobile ? ["60px", "-30px"] : ["160px", "-160px"],
   );
 
   return (
@@ -217,46 +228,77 @@ export function CtaSection() {
       className="relative w-full overflow-hidden"
       style={{ background: "linear-gradient(to bottom, transparent 0%, #14191E 100%)" }}
     >
-      <div className="relative mx-auto max-w-[1080px] px-4 pb-[440px] pt-24 sm:px-6 sm:pb-[520px] sm:pt-32 md:pb-[440px] md:pt-40">
-        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-8">
-          <div className="relative z-20 max-w-[400px]">
-            <FadeUp delay={1}>
-              <h2 className="font-display text-3xl font-normal leading-[1.15] tracking-[-0.02em] text-foreground sm:text-4xl">
-                اتعلّم إزاي تبدأ من صفر وتوصل لأول دخل بالدولار في 60 يوم.
+      <div className="relative z-20 mx-auto max-w-[1180px] px-5 pb-40 pt-20 sm:px-6 sm:pb-48 md:pb-56 md:pt-28">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
+          <div className="max-w-[520px]">
+            <FadeUp>
+              <span className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-[12px] text-muted-foreground">
+                الخطوة الأخيرة · قرار واحد
+              </span>
+            </FadeUp>
+            <FadeUp delay={0.06}>
+              <h2 className="mt-6 font-display text-[clamp(30px,5.6vw,52px)] font-normal leading-[1.14] tracking-[-0.02em] text-foreground">
+                ابدأ من صفر النهاردة… وابنِ أصل بيجيب{" "}
+                <span className="text-accent">دولار</span> باسمك.
               </h2>
             </FadeUp>
-            <FadeUp delay={0.1}>
-              <p className="mt-6 max-w-[380px] text-base leading-[1.7] text-muted-foreground sm:text-lg">
-                12 مسار دخل حقيقي على النت، خطة تنفيذ يوم بيوم، وأدوات وقوالب جاهزة تنسخها من أول
-                يوم — وكل ده بدفعة واحدة ووصول مدى الحياة.
+            <FadeUp delay={0.12}>
+              <p className="mt-5 max-w-[440px] text-[15.5px] leading-[1.9] text-muted-foreground sm:text-base">
+                خطة تنفيذ واضحة يوم بيوم، أدوات وقوالب جاهزة، ومسار تختاره وتمشي عليه لحد أول تحويل
+                — من غير خبرة ومن غير رأس مال كبير.
               </p>
             </FadeUp>
-            <FadeUp delay={0.2} className="mt-10">
-              <Link
-                to="/auth"
-                className="inline-flex h-12 items-center justify-center rounded-full bg-white/80 px-9 text-sm font-medium leading-none text-black transition-colors hover:bg-white"
-              >
-                ابدأ دلوقتي
-              </Link>
+
+            <FadeUp delay={0.18}>
+              <ul className="mt-8 divide-y divide-border/60 border-y border-border/60">
+                {CTA_POINTS.map((p) => (
+                  <li
+                    key={p}
+                    className="py-3 text-[14.5px] leading-relaxed text-secondary-foreground"
+                  >
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </FadeUp>
+
+            <FadeUp delay={0.24}>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <Link
+                  to="/auth"
+                  className="inline-flex h-13 items-center justify-center rounded-full bg-foreground px-10 py-4 text-[15px] font-semibold text-background transition-opacity hover:opacity-90"
+                >
+                  ابدأ دلوقتي — 999 جنيه
+                </Link>
+                <a
+                  href="#tracks"
+                  className="inline-flex items-center justify-center rounded-full border border-border px-8 py-4 text-[15px] text-foreground/85 transition-colors hover:text-foreground"
+                >
+                  شوف الـ 12 مسار الأول
+                </a>
+              </div>
+            </FadeUp>
+            <FadeUp delay={0.3}>
+              <p className="mt-4 text-[12.5px] text-muted-foreground">
+                دفع آمن بالفيزا وميزة وفوري وفودافون كاش · وصول فوري بعد الدفع
+              </p>
             </FadeUp>
           </div>
+
+          <motion.div style={{ y: dashboardY }} className="relative w-full">
+            <DashboardMock />
+          </motion.div>
         </div>
       </div>
-
-      <motion.div
-        style={{ y: dashboardY }}
-        className="absolute left-4 right-4 top-[440px] z-10 sm:-right-[8%] sm:left-auto sm:top-[460px] sm:w-[85%] md:-right-[10%] md:top-[500px] md:w-[80%] lg:-right-[12%] lg:top-20 lg:w-[68%]"
-      >
-        <DashboardMock />
-      </motion.div>
 
       <motion.img
         src={GRASS_SRC}
         alt=""
         aria-hidden
         style={{ y: grassY }}
-        className="pointer-events-none absolute bottom-[-40px] left-0 right-0 z-30 w-full select-none object-cover sm:bottom-[-80px] lg:bottom-[-140px]"
+        className="pointer-events-none absolute bottom-[-40px] left-0 right-0 z-10 w-full select-none object-cover sm:bottom-[-80px] lg:bottom-[-140px]"
       />
     </section>
   );
 }
+

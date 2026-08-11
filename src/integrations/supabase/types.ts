@@ -12096,6 +12096,7 @@ export type Database = {
         }
         Returns: Json
       }
+      expire_prize_rewards: { Args: never; Returns: number }
       game_credit_referral: {
         Args: { _source: string; _ton_paid: number; _user_id: string }
         Returns: number

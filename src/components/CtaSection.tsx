@@ -266,7 +266,7 @@ export function CtaSection() {
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <Link
                   to="/auth"
-                  className="inline-flex h-13 items-center justify-center rounded-full bg-foreground px-10 py-4 text-[15px] font-semibold text-background transition-opacity hover:opacity-90"
+                  className="inline-flex items-center justify-center rounded-full bg-foreground px-10 py-4 text-[15px] font-semibold text-background transition-opacity hover:opacity-90"
                 >
                   ابدأ دلوقتي — 999 جنيه
                 </Link>

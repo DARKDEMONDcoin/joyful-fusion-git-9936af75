@@ -183,7 +183,7 @@ function HeroPreview() {
 
 function DashboardMock() {
   return (
-    <div className="liquid-glass mx-auto aspect-[3/4] w-full max-w-[1100px] overflow-hidden rounded-2xl p-2 sm:aspect-[16/10] sm:p-3 lg:aspect-[16/9]">
+    <div className="liquid-glass mx-auto aspect-[4/5] w-full max-w-[1100px] overflow-hidden rounded-2xl p-2 sm:aspect-[16/10] sm:p-3 lg:aspect-[16/9]">
       <div className="grid h-full grid-cols-1 gap-2 sm:grid-cols-[minmax(220px,320px)_1fr] sm:gap-3">
         <div className="hidden min-h-0 sm:block">
           <ChatPanel animateMessagesIn />
@@ -228,7 +228,7 @@ export function CtaSection() {
       className="relative w-full overflow-hidden"
       style={{ background: "linear-gradient(to bottom, transparent 0%, #14191E 100%)" }}
     >
-      <div className="relative z-20 mx-auto max-w-[1180px] px-5 pb-40 pt-20 sm:px-6 sm:pb-48 md:pb-56 md:pt-28">
+      <div className="relative z-20 mx-auto max-w-[1180px] px-5 pb-32 pt-20 sm:px-6 sm:pb-40 md:pb-44 md:pt-28">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
           <div className="max-w-[520px]">
             <FadeUp>

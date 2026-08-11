@@ -166,12 +166,13 @@ function HeroPreview() {
 
       <div className="flex flex-col items-center px-3 pb-6 pt-3 text-center sm:px-4 sm:pt-5 md:pt-7">
         <h3 className="animate-fade-rise max-w-[90%] font-display text-lg font-normal leading-[1.15] tracking-[-0.03em] text-white sm:text-2xl md:text-3xl lg:text-4xl">
-          اتعلّم تشتغل من مصر{" "}
-          <em className="not-italic text-white/55">وتتقبض بالدولار.</em>
+          من مصر… تبني إمبراطورية دخل{" "}
+          <em className="not-italic text-white/55">بالدولار.</em>
         </h3>
         <p className="animate-fade-rise-delay mt-2 max-w-[80%] text-[9px] leading-relaxed text-white/60 sm:mt-3 sm:max-w-sm sm:text-[11px] md:mt-4 md:max-w-md md:text-xs">
-          12 مسار دخل حقيقي، خطة يوم بيوم، وأدوات جاهزة — من غير خبرة ومن غير رأس مال.
+          12 محرك دخل، أصول رقمية بتملكها، وخطة يوم بيوم — مش شغل بالساعة.
         </p>
+
         <span className="animate-fade-rise-delay-2 liquid-glass mt-3 rounded-full px-4 py-1.5 text-[9px] text-white sm:mt-4 sm:px-5 sm:py-2 sm:text-[10px] md:mt-5 md:px-6 md:py-2.5">
           ابدأ رحلتك
         </span>

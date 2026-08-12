@@ -10,21 +10,19 @@ import { CtaSection } from "@/components/CtaSection";
 import { Counter, Marquee, Reveal } from "@/components/motion";
 import { tracks } from "@/lib/tracks";
 import {
-  AudienceSection,
   BonusSection,
-  ComparisonSection,
   CurriculumSection,
   faqs,
   FaqSection,
-  FounderSection,
-  MoneyMathSection,
   PainSection,
   PricingSection,
+
   SiteFooter,
   StickyCta,
   TrustStrip,
   UspSection,
 } from "@/components/sections";
+
 
 
 
@@ -156,12 +154,9 @@ function Index() {
       <UspSection />
       <BonusSection />
       <PricingSection />
-      <MoneyMathSection />
       <Proof />
-      <ComparisonSection />
-      <AudienceSection />
-      <FounderSection />
       <FaqSection />
+
 
       <CtaSection />
       <SiteFooter />

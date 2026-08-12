@@ -156,12 +156,9 @@ function Index() {
       <UspSection />
       <BonusSection />
       <PricingSection />
-      <MoneyMathSection />
       <Proof />
-      <ComparisonSection />
-      <AudienceSection />
-      <FounderSection />
       <FaqSection />
+
 
       <CtaSection />
       <SiteFooter />

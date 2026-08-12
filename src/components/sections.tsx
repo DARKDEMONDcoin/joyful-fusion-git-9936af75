@@ -492,9 +492,12 @@ export const COURSE_INCLUDES = [
   "وحدة علم النفس وفن البيع بالكامل",
   "قوالب وسكربتات بيع جاهزة تنسخها",
   "خطة 60 يوم مكتوبة يوم بيوم",
+  "اشتراك مجاني في Megsy AI + كريدت على Claude ونماذج الفيديو السينمائي",
+  "كريدت Unlimited على Lovable + اشتراكات مجانية في أدوات تانية",
   "جروب الطلاب والدعم المباشر",
   "تحديثات مدى الحياة بدون فلوس زيادة",
 ];
+
 
 export function PricingSection() {
   return (
@@ -1293,6 +1296,96 @@ export function MoneyMathSection() {
           </p>
           <PrimaryButton to="/auth">ابدأ الحسبة من النهارده</PrimaryButton>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================ المزايا الحصرية مع الاشتراك ============================ */
+
+const bonuses = [
+  {
+    tag: "ذكاء اصطناعي",
+    t: "اشتراك مجاني في Megsy AI",
+    d: "حساب على megsyai.com بكريدت جاهز — تستخدمه في الكتابة والبيع والمحتوى وتنفيذ شغل عملائك من أول يوم.",
+  },
+  {
+    tag: "أقوى النماذج",
+    t: "كريدت على أشهر نماذج العالم",
+    d: "Claude وNano Banana Pro ونماذج توليد فيديو سينمائي — نفس الأدوات اللي الوكالات بتشتغل بيها، من غير ما تدفع اشتراك شهري بالدولار.",
+  },
+  {
+    tag: "بناء المنتجات",
+    t: "كريدت Unlimited على Lovable",
+    d: "تبني مواقع ومتاجر وتطبيقات كاملة بالذكاء الاصطناعي — ده وحده باب دخل تقدر تبيع بيه مشاريع بالدولار.",
+  },
+  {
+    tag: "أدوات مساندة",
+    t: "اشتراكات مجانية في مواقع تانية",
+    d: "باقة أدوات إضافية للتصميم والأتمتة والتسويق بتتحدّث باستمرار وبتتضاف لحسابك من غير رسوم.",
+  },
+];
+
+export function BonusSection() {
+  return (
+    <section id="bonus" className="border-t border-border bg-secondary/30 py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-6 md:px-14">
+        <Head
+          title="مش كورس بس… معاك عدّة الشغل كاملة"
+          accent="مزايا حصرية مع الاشتراك"
+          sub="أكبر حاجة بتوقف الناس هي تكلفة الأدوات بالدولار. عشان كده الاشتراك جايلك ومعاه اشتراكات وكريدت جاهز — تبدأ البيزنس بـ 0$ فعليًا."
+        />
+        <div className="grid gap-5 sm:grid-cols-2">
+          {bonuses.map((b) => (
+            <Card key={b.t}>
+              <span className="text-[11px] font-semibold tracking-[0.24em] text-accent">
+                {b.tag}
+              </span>
+              <h3 className="mb-3 mt-3 text-lg font-semibold text-foreground">{b.t}</h3>
+              <p className="text-[15px] leading-relaxed text-muted-foreground">{b.d}</p>
+            </Card>
+          ))}
+        </div>
+
+        <div className="mt-10 flex flex-col items-start justify-between gap-5 border border-border bg-secondary px-7 py-6 sm:flex-row sm:items-center">
+          <p className="max-w-2xl text-[14.5px] leading-[1.9] text-secondary-foreground">
+            <span className="font-semibold text-foreground">ابدأ بـ 0$:</span> الأدوات المدفوعة
+            بتيجي معاك جاهزة، والمسارات مترتّبة عشان أول عميل أو أول بيعة تغطّي أي مصاريف بعد كده.
+          </p>
+          <PrimaryButton to="/checkout">خُد الباقة كاملة</PrimaryButton>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================ ليه تشترك معانا ============================ */
+
+const usps = [
+  ["تنفيذ مش تنظير", "كل وحدة بتنتهي بخطوة تعملها النهارده — مش محاضرات بتتفرج عليها وتنساها."],
+  ["خبرة سوق حقيقية", "أرقام وأسعار وعروض من السوق العالمي نفسه، مش أمثلة مترجمة من كورس أجنبي."],
+  ["مجتمع ودعم مباشر", "جروب الطلاب ورد على أسئلتك خلال 24 ساعة."],
+  ["محتوى بيتحدّث باستمرار", "كل جديد في السوق والأدوات بيتضاف لحسابك بدون فلوس زيادة."],
+  ["اتعلم من الموبايل", "المنصة شغالة على أي شاشة، وفيه مسارات كاملة تتنفّذ من الموبايل."],
+  ["مفصّل للمصريين", "استلام الفلوس، الضرايب، التوثيق، وطرق الدفع المحلية — كلها متشرحة بخطوات."],
+];
+
+export function UspSection() {
+  return (
+    <section id="why" className="mx-auto max-w-6xl px-6 py-16 md:py-20 md:px-14">
+      <Head title="ليه تشترك معانا بالذات" accent="الفرق" />
+      <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+        {usps.map(([t, d]) => (
+          <div key={t} className="border-t border-border pt-5">
+            <div className="flex items-start gap-3">
+              <Check size={16} className="mt-1 shrink-0 text-accent" />
+              <div>
+                <h3 className="text-[16.5px] font-semibold text-foreground">{t}</h3>
+                <p className="mt-2 text-[14.5px] leading-relaxed text-muted-foreground">{d}</p>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -11,20 +11,21 @@ import { Counter, Marquee, Reveal } from "@/components/motion";
 import { tracks } from "@/lib/tracks";
 import {
   AudienceSection,
+  BonusSection,
   ComparisonSection,
   CurriculumSection,
   faqs,
   FaqSection,
   FounderSection,
-  
   MoneyMathSection,
   PainSection,
   PricingSection,
   SiteFooter,
-  
   StickyCta,
   TrustStrip,
+  UspSection,
 } from "@/components/sections";
+
 
 
 
@@ -150,18 +151,18 @@ function Index() {
       <Marquee items={ticker} />
 
       <PainSection />
-      <MoneyMathSection />
       <TracksList />
       <CurriculumSection />
+      <UspSection />
+      <BonusSection />
+      <PricingSection />
+      <MoneyMathSection />
       <Proof />
       <ComparisonSection />
       <AudienceSection />
       <FounderSection />
-      
-
-
-      <PricingSection />
       <FaqSection />
+
       <CtaSection />
       <SiteFooter />
       <StickyCta />

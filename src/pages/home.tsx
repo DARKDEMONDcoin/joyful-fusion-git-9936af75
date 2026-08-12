@@ -151,18 +151,18 @@ function Index() {
       <Marquee items={ticker} />
 
       <PainSection />
-      <MoneyMathSection />
       <TracksList />
       <CurriculumSection />
+      <UspSection />
+      <BonusSection />
+      <PricingSection />
+      <MoneyMathSection />
       <Proof />
       <ComparisonSection />
       <AudienceSection />
       <FounderSection />
-      
-
-
-      <PricingSection />
       <FaqSection />
+
       <CtaSection />
       <SiteFooter />
       <StickyCta />

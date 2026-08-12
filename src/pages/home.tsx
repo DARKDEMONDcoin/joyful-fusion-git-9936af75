@@ -14,7 +14,9 @@ import {
   CurriculumSection,
   faqs,
   FaqSection,
+  PainSection,
   PricingSection,
+
   SiteFooter,
   StickyCta,
   TrustStrip,
